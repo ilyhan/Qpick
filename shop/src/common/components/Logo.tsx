@@ -1,18 +1,16 @@
-import { clampText, hoverActive } from "@/common/styles/mixins";
-import { fonts } from "@/common/styles/styleConstants";
+import { hoverActive } from "@/common/styles/mixins";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logo from "@/common/icons/logo.svg";
 
-const StyledLogo = styled('div')`
-    ${clampText(fonts.sizes.logoMobile, fonts.sizes.logo)}
-    font-weight: ${fonts.weights.bold};
+const StyledLogo = styled('img')`
     ${hoverActive}
 `
 
 const Logo = () => {
     return (
-        <Link to='/qpick'>
-            <StyledLogo>QPICK</StyledLogo>
+        <Link to='/qpick/catalog'>
+            <StyledLogo src={logo} />
         </Link>
     )
 };

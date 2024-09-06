@@ -1,13 +1,14 @@
-import { hoverActiveMove, resetLink } from "@/common/styles/mixins";
+import { hoverActiveMove } from "@/common/styles/mixins";
 import { borders, colors, fonts } from "@/common/styles/styleConstants";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NavWrapper = styled('div')`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     height: 60px;
-    align-items: center;
 `;
 
 export const UserActions = styled('div')`
@@ -15,9 +16,8 @@ export const UserActions = styled('div')`
     gap: 45px;
 `;
 
-export const NavIconWrapper = styled('a')`
+export const NavIconWrapper = styled(Link)`
     position: relative;
-    ${resetLink}
     ${hoverActiveMove}
 `;
 

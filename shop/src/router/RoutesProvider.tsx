@@ -1,4 +1,6 @@
 import MainPage from "@/modules/MainPage";
+import Cart from "@/modules/cart/Cart";
+import Catalog from "@/modules/catalog/Catalog";
 import {
   Route,
   createBrowserRouter,
@@ -12,10 +14,10 @@ export default function RoutesProvider() {
     createRoutesFromElements(
       <>
         <Route path="qpick/" element={<MainPage/>}>
-          <Route path="catalog" element={<div>dcsdcsdc234342<br/>sdcsdcsdc23d</div>} />
-          <Route path="cart" element={<div>cart</div>} />
+          <Route path="catalog" element={<Catalog/>} />
+          <Route path="cart" element={<Cart/>} />
         </Route>
-        <Route path="*" element={<Navigate to="/auth/reg" replace />} />
+        <Route path="*" element={<Navigate to="qpick/catalog" replace />} />
       </>
     )
   );

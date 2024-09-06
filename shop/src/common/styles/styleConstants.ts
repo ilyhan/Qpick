@@ -10,7 +10,7 @@ export const colors = {
     //Black
     black: "rgba(0, 0, 0, 1)",
     richBlack: "rgba(16, 16, 16, 1)",
-    productNameColor: "rgba(28, 28, 39, 1)",
+    darkAngled: "rgba(28, 28, 39, 1)",
 
     //Accent
     accentColor: "rgba(255, 165, 66, 1)",
@@ -49,8 +49,6 @@ export const screen = {
 export const fonts = {
     // size
     sizes: {
-        logo: 25,
-        logoMobile: 20,
         title: 20,
         titleMobile: 18,
         main: 17,
@@ -69,5 +67,11 @@ export const fonts = {
 };
 
 export const borders = {
-    circle: '50%',
+    circle: "50%",
+    smallRadius: "20px",
+    defaultRadius: "30px",
+};
+
+export const shadows = {
+    defaultShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.1)",
 }

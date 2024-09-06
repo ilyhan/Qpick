@@ -6,8 +6,12 @@ import {
 import { resetLink } from "@/common/styles/mixins";
 
 export const Container = styled('div')`
-  max-width: 1100px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+  max-width: 1134px;
   margin: 0 auto;
+  padding-inline: 12px;
 `
 
 export const GlobalStyles = createGlobalStyle`
@@ -61,7 +65,7 @@ export const GlobalStyles = createGlobalStyle`
     scrollbar-gutter: stable;
   } 
   body {
-    min-height: 100%;
+    height: 100%;
     line-height: 1.5;
   } 
   svg *[fill] {

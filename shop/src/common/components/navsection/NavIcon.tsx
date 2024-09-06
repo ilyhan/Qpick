@@ -10,7 +10,7 @@ const NavIcon = ({ icon, link, alt}: NavIconProps) => {
     const itemCount = 1;
 
     return (
-        <NavIconWrapper href={link}>
+        <NavIconWrapper to={link}>
             <NavIconStyle src={icon} alt={alt}/>
             {itemCount > 0 && (
                 <CountProducts>
