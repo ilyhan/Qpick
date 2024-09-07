@@ -1,4 +1,5 @@
-import { 
+import { HeadphoneCategory, headphones } from "@/data/data";
+import {
     CatalogWrapper,
     TitleChapter,
     ProductsWrapper,
@@ -6,25 +7,24 @@ import {
 import Card from "@/modules/productCard/Card";
 
 const Catalog = () => {
+    const productes: HeadphoneCategory[] = headphones;
+
     return (
         <CatalogWrapper>
-            <TitleChapter>Наушники</TitleChapter>
-            <ProductsWrapper>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-            </ProductsWrapper>
+            {productes.map(headfones => (
+                <>
+                    <TitleChapter>{headfones.title}</TitleChapter>
 
-            <TitleChapter>Беспроводные наушники</TitleChapter>
-            <ProductsWrapper>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-            </ProductsWrapper>
+                    <ProductsWrapper>
+                        {headfones.productes.map(headfone => (
+                            <Card
+                                key={headfone.id}
+                                cardInfo={headfone}
+                            />
+                        ))}
+                    </ProductsWrapper>
+                </>
+            ))}
         </CatalogWrapper>
     );
 };

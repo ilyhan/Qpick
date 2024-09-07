@@ -19,16 +19,22 @@ export const CardWrapper = styled('button')`
     }
 `;
 
+export const ImageWrapper = styled('div')`
+    display: flex;
+    align-items: center;
+    height: 240px;
+    width: 100%;
+`;
+
 export const ProductImage = styled('img')`
-    max-height: 240px;
-    align-self: center;
+    margin: 0 auto;
 `;
 
 export const InfoWrapper = styled('div')`
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 25px;
-    margin-top: 54px;
+    margin-top: 50px;
     width: 100%;
     ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
     font-weight: ${fonts.weights.semiBold};

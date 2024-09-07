@@ -1,3 +1,5 @@
+import { CartProduct, TotalPrice } from "@/common/helper/cartfunction";
+import { Product } from "@/data/data";
 import {
     CartWtapper,
     CartTitle,
@@ -9,8 +11,47 @@ import {
     PaymentButton,
 } from "@/modules/cart/style";
 import CartCard from "@/modules/productCard/CartCard";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
+    const [cart, setCart] = useState<CartProduct[]>([]);
+
+    // useEffect(() => {
+    //     const savedCart = sessionStorage.getItem('cart');
+    //     if (savedCart) {
+    //         setCart(JSON.parse(savedCart));
+    //     }
+    // }, []);
+
+    useEffect(() => {
+        if (!cart.length){
+            const savedCart = sessionStorage.getItem('cart');
+            if (savedCart) {
+                setCart(JSON.parse(savedCart));
+            }
+        }else{
+            console.log(cart)
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }, [cart]);
+
+    const Increment = (id: number) => {
+        const newCart = cart.map(item =>
+            item.id === id && item.quantity < 99 ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        setCart(newCart)
+    };
+
+    const Decrement = (id: number) => {
+        setCart(cart.map(item =>
+            item.id === id
+                ? item.quantity > 1
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+                : item
+        ));
+    };
+
     return (
         <CartWtapper>
             <CartTitle>
@@ -19,17 +60,26 @@ const Cart = () => {
 
             <CartOrdersWrapper>
                 <CartList>
-                    <li><CartCard /></li>
-                    <li><CartCard /></li>
-                    <li><CartCard /></li>
-                    <li><CartCard /></li>
+                    {cart && cart.map(product => (
+                        <li key={product.id}>
+                            <CartCard
+                                id={product.id}
+                                title={product.title}
+                                price={product.price}
+                                img={product.img}
+                                // product.quantity попробуй функции определить в карточке а это передать и засунуть в стейт
+                                increment={Increment}
+                                decrement={Decrement}
+                            />
+                        </li>
+                    ))}
                 </CartList>
 
                 <div style={{ position: 'relative' }}>
                     <SideBarWrapper>
                         <SideBar>
                             <TotalResult>ИТОГО</TotalResult>
-                            <TotalResult>P 2979</TotalResult>
+                            <TotalResult>P {TotalPrice()}</TotalResult>
                         </SideBar>
 
                         <PaymentButton>

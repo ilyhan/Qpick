@@ -1,4 +1,4 @@
-import { clampText, resetButton } from "@/common/styles/mixins";
+import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins";
 import { borders, colors, fonts, shadows } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
@@ -59,4 +59,5 @@ export const PaymentButton = styled('button')`
     background-color: ${colors.richBlack};
     border-radius: ${borders.smallRadius};
     box-shadow: ${shadows.defaultShadow};
+    ${hoverActiveMove}
 `;

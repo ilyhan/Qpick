@@ -13,33 +13,34 @@ import {
     TotalProductWrapper,
     QuantityProductWrapper
 } from "@/modules/productCard/style";
-import image from "../../../public/images/Image.png";
+// import image from "@/data/images/byz.png";
 import trash from "@/common/icons/trash.svg";
-import { useState } from "react";
+import { Quantity } from "@/common/helper/cartfunction";
 
-const CartCard = () => {
-    const [quantity, seQuantity] = useState(1);
+interface CartCardProps {
+    id: number;
+    img: string;
+    price: number;
+    title: string;
+    increment: (id: number)=>void;
+    decrement: (id: number)=>void;
+};
 
-    const minusItem = () => {
-        seQuantity(quantity => quantity > 1 ? quantity - 1 : quantity);
-    };
-
-    const plusItem = () => {
-        seQuantity(quantity => quantity < 99 ? quantity + 1 : quantity);
-    };
-
+const CartCard = ({id, img, price, title, increment, decrement}:CartCardProps) => {
+    const quantity = Quantity(id);
+    
     return (
         <CartCardWrapper>
             <CartCardInfo>
-                <CartProductImg src={image} alt="Картинка товара" />
+                <CartProductImg src={img} alt="Картинка товара" />
 
                 <CartProductInfo>
                     <CartProductTitle>
-                        Apple BYZ S852I
+                        {title}
                     </CartProductTitle>
 
                     <CartProductPrice>
-                        2979 Р
+                        {price} ₽
                     </CartProductPrice>
                 </CartProductInfo>
 
@@ -51,7 +52,7 @@ const CartCard = () => {
             <TotalProductWrapper>
                 <QuantityProductWrapper>
                     <QuantityButton
-                        onClick={minusItem}
+                        onClick={()=>decrement(id)}
                         disabled={quantity === 1}
                     >
                         -
@@ -60,7 +61,7 @@ const CartCard = () => {
                     <QuantityProduct>{quantity}</QuantityProduct>
 
                     <QuantityButton
-                        onClick={plusItem}
+                        onClick={()=>increment(id)}
                         disabled={quantity === 99}
                     >
                         +
@@ -68,7 +69,7 @@ const CartCard = () => {
                 </QuantityProductWrapper>
 
                 <TotalProductPrice>
-                    2979 Р
+                    {price*quantity} ₽
                 </TotalProductPrice>
             </TotalProductWrapper>
         </CartCardWrapper>

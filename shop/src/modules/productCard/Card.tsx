@@ -8,30 +8,43 @@ import {
     ProductRating,
     RatingStar,
     ProductAction,
+    ImageWrapper,
 } from "@/modules/productCard/style";
 import star from "@/common/icons/star.svg";
-import image from "../../../public/images/Image.png"
+import { Product } from "@/data/data";
+import { addNewProduct } from "@/common/helper/cartfunction";
 
-const Card = () => {
+interface CardProps {
+    cardInfo: Product;
+};
+
+const Card = ({cardInfo}: CardProps) => {
+
+    const setItemCart = () => {
+        addNewProduct(cardInfo);
+    };
+
     return (
         <CardWrapper>
-            <ProductImage src={image} />
+            <ImageWrapper>
+                <ProductImage src={cardInfo.img} alt="товар" />
+            </ImageWrapper>
 
             <InfoWrapper>
                 <ProductTitle>
-                    Apple BYZ S852I
+                    {cardInfo.title}
                 </ProductTitle>
 
                 <ProductPrice>
-                    2312 Р
+                    {cardInfo.price} ₽
                 </ProductPrice>
 
                 <ProductRatingWrapper>
-                    <RatingStar src={star} alt="Рейтинг товара"/>
-                    <ProductRating>4.7</ProductRating>
+                    <RatingStar src={star} alt="Рейтинг товара" />
+                    <ProductRating>{cardInfo.rating}</ProductRating>
                 </ProductRatingWrapper>
 
-                <ProductAction>
+                <ProductAction onClick={setItemCart}>
                     Купить
                 </ProductAction>
             </InfoWrapper>
