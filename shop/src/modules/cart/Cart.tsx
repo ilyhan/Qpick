@@ -1,5 +1,3 @@
-import { CartProduct, TotalPrice } from "@/common/helper/cartfunction";
-import { Product } from "@/data/data";
 import {
     CartWtapper,
     CartTitle,
@@ -11,58 +9,14 @@ import {
     PaymentButton,
 } from "@/modules/cart/style";
 import CartCard from "@/modules/productCard/CartCard";
-import { useEffect, useState } from "react";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
-    const [cart, setCart] = useState<CartProduct[]>([]);
+    const cart = useSelector((state: RootState) => state.cart.products);
 
-    // useEffect(() => {
-    //     const savedCart = sessionStorage.getItem('cart');
-    //     if (savedCart) {
-    //         setCart(JSON.parse(savedCart));
-    //     }
-    // }, []);
-
-    useEffect(() => {
-        if (!cart.length) {
-            const savedCart = sessionStorage.getItem('cart');
-            if (savedCart) {
-                setCart(JSON.parse(savedCart));
-            }
-        } else {
-            console.log(cart)
-            sessionStorage.setItem('cart', JSON.stringify(cart));
-        }
-    }, [cart]);
-
-    const Increment = (id: number) => {
-        const newCart = cart.map(item =>
-            item.id === id && item.quantity < 99 ? { ...item, quantity: item.quantity + 1 } : item
-        );
-        setCart(newCart)
-        sessionStorage.setItem('cart', JSON.stringify(newCart));
-    };
-
-    //сделать функцию в cartfunction для инкремента и декремента
-    const Decrement = (id: number) => {
-        const newCart = cart.map(item =>
-            item.id === id
-                ? item.quantity > 1
-                    ? { ...item, quantity: item.quantity - 1 }
-                    : item
-                : item
-        )
-        setCart(newCart);
-        sessionStorage.setItem('cart', JSON.stringify(newCart));
-    };
-
-    //можно сделаьть изменение только хранилища и дрбавить слушатель изменения и записывать в стейт которрый и будет делать перерендер
-
-    const DeleteProduct = (id: number) => {
-        const newCart = cart.filter(item => item.id !== id);
-        console.log(newCart)
-        setCart(newCart);
-        sessionStorage.setItem('cart', JSON.stringify(newCart));
+    const TotalPrice = () => {
+        return cart.reduce((total, item) => total + item.price * item.quantity, 0);
     };
 
     return (
@@ -75,16 +29,7 @@ const Cart = () => {
                 <CartList>
                     {cart && cart.map(product => (
                         <li key={product.id}>
-                            <CartCard
-                                id={product.id}
-                                title={product.title}
-                                price={product.price}
-                                img={product.img}
-                                // product.quantity попробуй функции определить в карточке а это передать и засунуть в стейт
-                                increment={Increment}
-                                decrement={Decrement}
-                                deleteProduct={DeleteProduct}
-                            />
+                            <CartCard {...product}/>
                         </li>
                     ))}
                 </CartList>

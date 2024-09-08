@@ -1,5 +1,6 @@
 import { NavIconWrapper, NavIconStyle, CountProducts } from "@/common/components/navsection/style";
-import { useEffect, useState } from "react";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
 interface NavIconProps {
     icon: string;
@@ -7,32 +8,15 @@ interface NavIconProps {
     alt: string;
 };
 
-const NavIcon = ({ icon, link, alt}: NavIconProps) => {
-    const [itemCount, setItemCount] = useState(0);
-
-    useEffect(() => {
-        const handleStorageChange = (event: StorageEvent) => {
-            console.log('23')
-
-            if (event.key === 'cart') {
-                console.log('23')
-                setItemCount(event.newValue ? JSON.parse(event.newValue).lenght : itemCount);
-            }
-        };
-
-        window.addEventListener('storage', handleStorageChange);
-
-        // return () => {
-        //     window.removeEventListener('storage', handleStorageChange);
-        // };
-    },  []);
-
+const NavIcon = ({ icon, link, alt }: NavIconProps) => {
+    const itemCount = useSelector((state: RootState) => state.cart.products.length);
+    
     return (
         <NavIconWrapper to={link}>
-            <NavIconStyle src={icon} alt={alt}/>
+            <NavIconStyle src={icon} alt={alt} />
             {itemCount > 0 && (
-                <CountProducts>
-                    {itemCount}
+                <CountProducts key={itemCount}>
+                    {itemCount > 9 ? '9+' : itemCount}
                 </CountProducts>
             )}
         </NavIconWrapper>

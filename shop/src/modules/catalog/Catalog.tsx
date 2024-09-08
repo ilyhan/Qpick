@@ -5,9 +5,17 @@ import {
     ProductsWrapper,
 } from "@/modules/catalog/style";
 import Card from "@/modules/productCard/Card";
+import { useEffect } from "react";
 
 const Catalog = () => {
     const productes: HeadphoneCategory[] = headphones;
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'instant',
+        });
+    }, []);
 
     return (
         <CatalogWrapper>

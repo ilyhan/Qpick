@@ -2,7 +2,7 @@ import { clampText, hoverActive, resetButton } from "@/common/styles/mixins";
 import { borders, colors, fonts, shadows } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
-export const FooterWrapper = styled('footer')`
+export const FooterWrapper = styled('section')`
     display: flex;
     justify-content: space-between;
     height: 150px;

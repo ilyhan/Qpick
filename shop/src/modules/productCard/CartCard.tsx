@@ -13,28 +13,35 @@ import {
     TotalProductWrapper,
     QuantityProductWrapper
 } from "@/modules/productCard/style";
-// import image from "@/data/images/byz.png";
 import trash from "@/common/icons/trash.svg";
-import { Quantity } from "@/common/helper/cartfunction";
-import { useState } from "react";
+import { memo, useState } from "react";
+import { useActions } from "@/store/actions";
 
 interface CartCardProps {
     id: number;
     img: string;
     price: number;
     title: string;
-    increment: (id: number) => void;
-    decrement: (id: number) => void;
-    deleteProduct: (id: number) => void;
+    quantity: number;
 };
 
-const CartCard = ({ id, img, price, title, increment, decrement, deleteProduct }: CartCardProps) => {
-    const quantity = Quantity(id);
+const CartCard = memo(({
+    id,
+    img,
+    price,
+    title,
+    quantity,
+}: CartCardProps) => {
     const [isDelete, setIsDelete] = useState(false);
+
+    const {
+        setQuantity,
+        deleteProduct
+    } = useActions();
 
     const deleteItem = () => {
         setIsDelete(true);
-        setTimeout(()=>deleteProduct(id), 500)
+        setTimeout(() => deleteProduct({ id: id }), 500)
     };
 
     return (
@@ -60,7 +67,7 @@ const CartCard = ({ id, img, price, title, increment, decrement, deleteProduct }
             <TotalProductWrapper>
                 <QuantityProductWrapper>
                     <QuantityButton
-                        onClick={() => decrement(id)}
+                        onClick={() => setQuantity({ id: id, change: -1 })}
                         disabled={quantity === 1}
                     >
                         -
@@ -69,8 +76,8 @@ const CartCard = ({ id, img, price, title, increment, decrement, deleteProduct }
                     <QuantityProduct>{quantity}</QuantityProduct>
 
                     <QuantityButton
-                        onClick={() => increment(id)}
-                        disabled={quantity === 99}
+                        onClick={() => setQuantity({ id: id, change: 1 })}
+                        disabled={quantity === 9}
                     >
                         +
                     </QuantityButton>
@@ -82,6 +89,6 @@ const CartCard = ({ id, img, price, title, increment, decrement, deleteProduct }
             </TotalProductWrapper>
         </CartCardWrapper>
     );
-};
+});
 
 export default CartCard;

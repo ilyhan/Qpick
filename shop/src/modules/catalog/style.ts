@@ -2,7 +2,7 @@ import { clampText } from "@/common/styles/mixins";
 import { colors, fonts } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
-export const CatalogWrapper = styled('div')`
+export const CatalogWrapper = styled('section')`
     width: 100%;
     margin-block: 28px 20px;
 `;

@@ -2,7 +2,7 @@ import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins"
 import { borders, colors, fonts, shadows } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
-export const CartWtapper = styled('div')`
+export const CartWtapper = styled('section')`
     width: 100%;
     margin-block: 30px 20px;
 `;
@@ -34,7 +34,7 @@ export const SideBarWrapper = styled('div')`
     box-shadow: ${shadows.defaultShadow};
 `;
 
-export const SideBar = styled('div')`
+export const SideBar = styled('aside')`
     display: flex;
     justify-content: space-between;
 `;

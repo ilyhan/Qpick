@@ -12,16 +12,17 @@ import {
 } from "@/modules/productCard/style";
 import star from "@/common/icons/star.svg";
 import { Product } from "@/data/data";
-import { addNewProduct } from "@/common/helper/cartfunction";
+import { useActions } from "@/store/actions";
 
 interface CardProps {
     cardInfo: Product;
 };
 
-const Card = ({cardInfo}: CardProps) => {
+const Card = ({ cardInfo }: CardProps) => {
+    const { addCartProduct } = useActions();
 
     const setItemCart = () => {
-        addNewProduct(cardInfo);
+        addCartProduct(cardInfo);
     };
 
     return (
