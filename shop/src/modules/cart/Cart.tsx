@@ -11,10 +11,12 @@ import {
 } from "@/modules/cart/style";
 import CartCard from "@/modules/productCard/CartCard";
 import { RootState } from "@/store/store";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
     const cart = useSelector((state: RootState) => state.cart.products);
+    const { t } = useTranslation();
 
     const TotalPrice = () => {
         return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -23,7 +25,7 @@ const Cart = () => {
     return (
         <CartWtapper>
             <CartTitle>
-                {cart.length ? 'Корзина' : 'Корзина пуста'}
+                {cart.length ? t('cart') : t('emptyCart')}
             </CartTitle>
 
             <CartOrdersWrapper>
@@ -38,12 +40,12 @@ const Cart = () => {
                 {cart.length ? <PositionWrapper>
                     <SideBarWrapper>
                         <SideBar>
-                            <TotalResult>ИТОГО</TotalResult>
+                            <TotalResult>{t('total')}</TotalResult>
                             <TotalResult>P {TotalPrice()}</TotalResult>
                         </SideBar>
 
                         <PaymentButton>
-                            Перейти к оформлению
+                            {t('registration')}
                         </PaymentButton>
                     </SideBarWrapper>
                 </PositionWrapper> : null}

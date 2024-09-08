@@ -15,7 +15,7 @@ export interface HeadphoneCategory {
 export const headphones: HeadphoneCategory[] = [
     {
         type: "wired",
-        title: 'Наушники',
+        title: 'headfone',
         productes: [
             {
                 id: 1,
@@ -64,7 +64,7 @@ export const headphones: HeadphoneCategory[] = [
 
     {
         type: "wireless",
-        title: "Беспроводные наушники",
+        title: "wirelessHeadphones",
         productes: [
             {
                 id: 7,

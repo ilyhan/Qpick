@@ -1,5 +1,5 @@
 import { clampText, hoverActiveMove } from "@/common/styles/mixins";
-import { borders, colors, fonts } from "@/common/styles/styleConstants";
+import { borders, colors, fonts, screen } from "@/common/styles/styleConstants";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,6 +14,11 @@ export const NavWrapper = styled('section')`
 export const UserActions = styled('div')`
     display: flex;
     gap: 45px;
+
+    @media (max-width: ${screen.mobileScreenWidth}) {
+        gap: 30px;
+        margin-right: 10px;
+    } 
 `;
 
 export const NavIconWrapper = styled(Link)`

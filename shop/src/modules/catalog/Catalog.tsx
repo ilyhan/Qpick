@@ -6,9 +6,11 @@ import {
 } from "@/modules/catalog/style";
 import Card from "@/modules/productCard/Card";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Catalog = () => {
     const productes: HeadphoneCategory[] = headphones;
+    const { t } = useTranslation();
 
     useEffect(() => {
         window.scrollTo({
@@ -21,7 +23,7 @@ const Catalog = () => {
         <CatalogWrapper>
             {productes.map(headfones => (
                 <>
-                    <TitleChapter>{headfones.title}</TitleChapter>
+                    <TitleChapter>{t(headfones.title)}</TitleChapter>
 
                     <ProductsWrapper>
                         {headfones.productes.map(headfone => (

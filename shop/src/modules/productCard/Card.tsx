@@ -13,6 +13,7 @@ import {
 import star from "@/common/icons/star.svg";
 import { Product } from "@/data/data";
 import { useActions } from "@/store/actions";
+import { useTranslation } from "react-i18next";
 
 interface CardProps {
     cardInfo: Product;
@@ -20,6 +21,7 @@ interface CardProps {
 
 const Card = ({ cardInfo }: CardProps) => {
     const { addCartProduct } = useActions();
+    const { t } = useTranslation();
 
     const setItemCart = () => {
         addCartProduct(cardInfo);
@@ -46,7 +48,7 @@ const Card = ({ cardInfo }: CardProps) => {
                 </ProductRatingWrapper>
 
                 <ProductAction onClick={setItemCart}>
-                    Купить
+                    {t('buy')}
                 </ProductAction>
             </InfoWrapper>
         </CardWrapper>

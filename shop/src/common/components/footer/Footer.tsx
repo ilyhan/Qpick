@@ -16,13 +16,13 @@ import vk from "@/common/icons/VK.svg";
 import telegram from "@/common/icons/Telegram.svg";
 import whatsapp from "@/common/icons/Whatsapp.svg";
 import ru from "@/common/icons/ru.svg";
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-    const [lang, setLeng] = useState('ru');
+    const { t, i18n } = useTranslation();
 
-    const changeLang = (newLang: string) => {
-        setLeng(newLang);
+    const changeLanguage = (lng: string) => {
+      i18n.changeLanguage(lng);
     };
 
     return (
@@ -30,27 +30,27 @@ const Footer = () => {
             <Logo />
 
             <NavList>
-                <NavItem>Избранное</NavItem>
-                <NavItem>Корзина</NavItem>
-                <NavItem>Контакты</NavItem>
+                <NavItem>{t('vishflist')}</NavItem>
+                <NavItem>{t('cart')}</NavItem>
+                <NavItem>{t('contact')}</NavItem>
             </NavList>
 
             <TermsUseWrapper>
-                <TermsUse>Условия сервиса</TermsUse>
+                <TermsUse>{t('termsService')}</TermsUse>
 
                 <ExhangeLanguage>
                     <LanguageIcon src={ru} />
 
                     <Language
-                        $isSelected={lang === 'ru'}
-                        onClick={() => changeLang('ru')}
+                        $isSelected={'ru' === i18n.language}
+                        onClick={() => changeLanguage('ru')}
                     >
                         Рус
                     </Language>
 
                     <Language
-                        $isSelected={lang === 'eng'}
-                        onClick={() => changeLang('eng')}
+                        $isSelected={'en' === i18n.language}
+                        onClick={() => changeLanguage('en')}
                     >
                         Eng
                     </Language>

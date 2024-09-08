@@ -60,6 +60,7 @@ export const TotalResult = styled('span')`
     ${clampText(fonts.sizes.smallMobile, fonts.sizes.small)}
     font-weight: ${fonts.weights.semiBold};
     letter-spacing: 0.5px;
+    text-transform: uppercase;
 `;
 
 export const PaymentButton = styled('button')`

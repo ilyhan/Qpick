@@ -5,12 +5,12 @@ import logo from "@/common/icons/logo.svg";
 
 const StyledLogo = styled('img')`
     ${hoverActive}
-`
+`;
 
 const Logo = () => {
     return (
         <Link to='/qpick/catalog'>
-            <StyledLogo src={logo} />
+            <StyledLogo src={logo} alt='Логотип'/>
         </Link>
     )
 };
