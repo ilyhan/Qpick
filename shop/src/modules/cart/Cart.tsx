@@ -7,6 +7,7 @@ import {
     SideBar,
     TotalResult,
     PaymentButton,
+    PositionWrapper,
 } from "@/modules/cart/style";
 import CartCard from "@/modules/productCard/CartCard";
 import { RootState } from "@/store/store";
@@ -29,12 +30,12 @@ const Cart = () => {
                 <CartList>
                     {cart && cart.map(product => (
                         <li key={product.id}>
-                            <CartCard {...product}/>
+                            <CartCard {...product} />
                         </li>
                     ))}
                 </CartList>
 
-                <div style={{ position: 'relative' }}>
+                {cart.length ? <PositionWrapper>
                     <SideBarWrapper>
                         <SideBar>
                             <TotalResult>ИТОГО</TotalResult>
@@ -45,7 +46,7 @@ const Cart = () => {
                             Перейти к оформлению
                         </PaymentButton>
                     </SideBarWrapper>
-                </div>
+                </PositionWrapper> : null}
             </CartOrdersWrapper>
         </CartWtapper >
     );

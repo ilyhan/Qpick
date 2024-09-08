@@ -1,12 +1,12 @@
 import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins";
-import { borders, colors, fonts, shadows, transitions } from "@/common/styles/styleConstants";
+import { borders, colors, fonts, screen, shadows, transitions } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const CardWrapper = styled('button')`
     ${resetButton}
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 100%;
     height: 407px;
     padding: 15px 20px 25px;
     background-color: ${colors.white};
@@ -17,6 +17,22 @@ export const CardWrapper = styled('button')`
     &:hover {
         translate: 0px -5px;
     }
+
+    
+    @media (max-width: ${screen.tabletScreenWidthAbove}) {
+        height: 380px;
+        padding: 12px 17px 20px;
+    } 
+
+    @media (max-width: ${screen.mobileScreenWidthAbove}) {
+        height: 365px;
+        padding: 10px 17px 17px;
+    } 
+
+    @media (max-width: ${screen.lMobileScreenWidthAbove}) {
+        height: 350px;
+        padding: 10px 17px 17px;
+    } 
 `;
 
 export const ImageWrapper = styled('div')`
@@ -24,6 +40,14 @@ export const ImageWrapper = styled('div')`
     align-items: center;
     height: 240px;
     width: 100%;
+
+    @media (max-width: ${screen.tabletScreenWidthAbove}) {
+        height: 220px;
+    } 
+
+    @media (max-width:  ${screen.mobileScreenWidthAbove}) {
+        height: 200px;
+    } 
 `;
 
 export const ProductImage = styled('img')`
@@ -32,7 +56,7 @@ export const ProductImage = styled('img')`
 
 export const InfoWrapper = styled('div')`
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
     row-gap: 25px;
     margin-top: 50px;
     width: 100%;
@@ -71,9 +95,9 @@ export const ProductAction = styled('button')`
     justify-self: end;
 `;
 
-export const CartCardWrapper = styled('div')<{$isDelete:boolean}>`
+export const CartCardWrapper = styled('div') <{ $isDelete: boolean }>`
     height: 218px;
-    width: 633px;
+    width: 100%;
     background-color: ${colors.white};
     box-shadow: ${shadows.defaultShadow};
     border-radius: ${borders.defaultRadius};
@@ -81,8 +105,8 @@ export const CartCardWrapper = styled('div')<{$isDelete:boolean}>`
     margin-top: 13px;
 
     transition: all 0.3s ease;
-    opacity: ${({ $isDelete }) => ($isDelete ? '0' : '1')};
-    transform: ${({ $isDelete }) => ($isDelete ? 'translateY(-10px)' : 'translateY(0)')};
+    opacity: ${props => props.$isDelete ? '0' : '1'};
+    transform: ${props => props.$isDelete ? 'translateY(-10px)' : 'translateY(0)'};
 `;
 
 export const CartProductImg = styled('img')`
@@ -163,6 +187,10 @@ export const QuantityProductWrapper = styled('div')`
     justify-content: space-between;
     width: 120px;
     margin-left: 14px;
+
+    @media (max-width:  ${screen.lMobileScreenWidthAbove}) {
+        margin-left: 0px;
+    } 
 `;
 
 export const QuantityProduct = styled('div')`

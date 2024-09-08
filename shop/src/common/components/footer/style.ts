@@ -1,5 +1,5 @@
 import { clampText, hoverActive, resetButton } from "@/common/styles/mixins";
-import { borders, colors, fonts, shadows } from "@/common/styles/styleConstants";
+import { borders, colors, fonts, screen, shadows } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const FooterWrapper = styled('section')`
@@ -17,6 +17,10 @@ export const FooterWrapper = styled('section')`
 export const ConnectMessenger = styled('div')`
     display: flex;
     column-gap: 18px;
+
+    @media (max-width: ${screen.mobileScreenWidthAbove}) {
+        display: none;
+    } 
 `;
 
 export const MessengerIcon = styled('img')`
@@ -42,6 +46,10 @@ export const TermsUseWrapper = styled('div')`
     display: flex;
     flex-direction: column;
     gap: 35px;
+
+    @media (max-width: ${screen.lMobileScreenWidthAbove}) {
+        display: none;
+    } 
 `;
 
 export const TermsUse = styled('p')`

@@ -30,14 +30,14 @@ export const screen = {
     desktopScreenWidth: "1440px",
     desktopScreenWidthAbove: "1441px",
 
-    tabletScreenWidth: "1024px",
-    tabletScreenWidthAbove: "1025px",
+    tabletScreenWidth: "1023px",
+    tabletScreenWidthAbove: "1024px",
 
     mobileScreenWidth: "768px",
     mobileScreenWidthAbove: "769px",
 
-    lMobileScreenWidth: "480px",
-    lMobileScreenWidthAbove: "481px",
+    lMobileScreenWidth: "424px",
+    lMobileScreenWidthAbove: "425px",
 
     mMobileScreenWidth: "375px",
     mMobileScreenWidthAbove: "376px",

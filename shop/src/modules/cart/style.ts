@@ -1,5 +1,5 @@
 import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins";
-import { borders, colors, fonts, shadows } from "@/common/styles/styleConstants";
+import { borders, colors, fonts, shadows, screen } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const CartWtapper = styled('section')`
@@ -14,8 +14,16 @@ export const CartTitle = styled('h1')`
 `;
 
 export const CartOrdersWrapper = styled('div')`
-    display: flex;
+    display: grid;
+    grid-template-columns: 633px auto;
     justify-content: space-between;
+
+    @media (max-width: ${screen.tabletScreenWidth}) {
+        display: grid;
+        grid-template-columns: minmax(250px, 600px);
+        justify-content: center;
+        gap: 20px;
+    } 
 `;
 
 export const CartList = styled('ul')`
@@ -26,12 +34,21 @@ export const CartList = styled('ul')`
 export const SideBarWrapper = styled('div')`
     position: sticky;
     top: 13px;
-    width: 350px;
+    width: 100%;
     height: 115px;
     padding: 21px 16px 0px 21px;
     background-color: ${colors.white};
     border-radius: ${borders.defaultRadius};
     box-shadow: ${shadows.defaultShadow};
+`;
+
+export const PositionWrapper = styled('div')`
+    position: relative;
+    width: 350px;
+
+    @media (max-width: ${screen.tabletScreenWidth}) {
+        width: 100%;
+    } 
 `;
 
 export const SideBar = styled('aside')`
