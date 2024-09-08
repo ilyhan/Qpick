@@ -24,12 +24,12 @@ const Cart = () => {
     // }, []);
 
     useEffect(() => {
-        if (!cart.length){
+        if (!cart.length) {
             const savedCart = sessionStorage.getItem('cart');
             if (savedCart) {
                 setCart(JSON.parse(savedCart));
             }
-        }else{
+        } else {
             console.log(cart)
             sessionStorage.setItem('cart', JSON.stringify(cart));
         }
@@ -40,22 +40,35 @@ const Cart = () => {
             item.id === id && item.quantity < 99 ? { ...item, quantity: item.quantity + 1 } : item
         );
         setCart(newCart)
+        sessionStorage.setItem('cart', JSON.stringify(newCart));
     };
 
+    //сделать функцию в cartfunction для инкремента и декремента
     const Decrement = (id: number) => {
-        setCart(cart.map(item =>
+        const newCart = cart.map(item =>
             item.id === id
                 ? item.quantity > 1
                     ? { ...item, quantity: item.quantity - 1 }
                     : item
                 : item
-        ));
+        )
+        setCart(newCart);
+        sessionStorage.setItem('cart', JSON.stringify(newCart));
+    };
+
+    //можно сделаьть изменение только хранилища и дрбавить слушатель изменения и записывать в стейт которрый и будет делать перерендер
+
+    const DeleteProduct = (id: number) => {
+        const newCart = cart.filter(item => item.id !== id);
+        console.log(newCart)
+        setCart(newCart);
+        sessionStorage.setItem('cart', JSON.stringify(newCart));
     };
 
     return (
         <CartWtapper>
             <CartTitle>
-                Корзина
+                {cart.length ? 'Корзина' : 'Корзина пуста'}
             </CartTitle>
 
             <CartOrdersWrapper>
@@ -70,6 +83,7 @@ const Cart = () => {
                                 // product.quantity попробуй функции определить в карточке а это передать и засунуть в стейт
                                 increment={Increment}
                                 decrement={Decrement}
+                                deleteProduct={DeleteProduct}
                             />
                         </li>
                     ))}

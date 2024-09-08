@@ -71,7 +71,7 @@ export const ProductAction = styled('button')`
     justify-self: end;
 `;
 
-export const CartCardWrapper = styled('div')`
+export const CartCardWrapper = styled('div')<{$isDelete:boolean}>`
     height: 218px;
     width: 633px;
     background-color: ${colors.white};
@@ -79,6 +79,10 @@ export const CartCardWrapper = styled('div')`
     border-radius: ${borders.defaultRadius};
     padding: 18px 28px 15px 18px;
     margin-top: 13px;
+
+    transition: all 0.3s ease;
+    opacity: ${({ $isDelete }) => ($isDelete ? '0' : '1')};
+    transform: ${({ $isDelete }) => ($isDelete ? 'translateY(-10px)' : 'translateY(0)')};
 `;
 
 export const CartProductImg = styled('img')`
@@ -113,6 +117,7 @@ export const QuantityButton = styled('button')`
     ${hoverActiveMove}
 
     &:disabled{
+        cursor: default;
         &:hover{
             opacity: 1;
             translate: 0;

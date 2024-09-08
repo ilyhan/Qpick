@@ -16,21 +16,29 @@ import {
 // import image from "@/data/images/byz.png";
 import trash from "@/common/icons/trash.svg";
 import { Quantity } from "@/common/helper/cartfunction";
+import { useState } from "react";
 
 interface CartCardProps {
     id: number;
     img: string;
     price: number;
     title: string;
-    increment: (id: number)=>void;
-    decrement: (id: number)=>void;
+    increment: (id: number) => void;
+    decrement: (id: number) => void;
+    deleteProduct: (id: number) => void;
 };
 
-const CartCard = ({id, img, price, title, increment, decrement}:CartCardProps) => {
+const CartCard = ({ id, img, price, title, increment, decrement, deleteProduct }: CartCardProps) => {
     const quantity = Quantity(id);
-    
+    const [isDelete, setIsDelete] = useState(false);
+
+    const deleteItem = () => {
+        setIsDelete(true);
+        setTimeout(()=>deleteProduct(id), 500)
+    };
+
     return (
-        <CartCardWrapper>
+        <CartCardWrapper $isDelete={isDelete}>
             <CartCardInfo>
                 <CartProductImg src={img} alt="Картинка товара" />
 
@@ -44,7 +52,7 @@ const CartCard = ({id, img, price, title, increment, decrement}:CartCardProps) =
                     </CartProductPrice>
                 </CartProductInfo>
 
-                <DeleteProductButton>
+                <DeleteProductButton onClick={deleteItem}>
                     <DeleteIcon src={trash} />
                 </DeleteProductButton>
             </CartCardInfo>
@@ -52,7 +60,7 @@ const CartCard = ({id, img, price, title, increment, decrement}:CartCardProps) =
             <TotalProductWrapper>
                 <QuantityProductWrapper>
                     <QuantityButton
-                        onClick={()=>decrement(id)}
+                        onClick={() => decrement(id)}
                         disabled={quantity === 1}
                     >
                         -
@@ -61,7 +69,7 @@ const CartCard = ({id, img, price, title, increment, decrement}:CartCardProps) =
                     <QuantityProduct>{quantity}</QuantityProduct>
 
                     <QuantityButton
-                        onClick={()=>increment(id)}
+                        onClick={() => increment(id)}
                         disabled={quantity === 99}
                     >
                         +
@@ -69,7 +77,7 @@ const CartCard = ({id, img, price, title, increment, decrement}:CartCardProps) =
                 </QuantityProductWrapper>
 
                 <TotalProductPrice>
-                    {price*quantity} ₽
+                    {price * quantity} ₽
                 </TotalProductPrice>
             </TotalProductWrapper>
         </CartCardWrapper>
