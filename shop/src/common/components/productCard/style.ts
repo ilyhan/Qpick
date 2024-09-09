@@ -3,6 +3,7 @@ import { borders, colors, fonts, screen, shadows, transitions } from "@/common/s
 import styled from "styled-components";
 
 export const CardWrapper = styled('button')`
+    position: relative;
     ${resetButton}
     display: flex;
     flex-direction: column;
@@ -52,6 +53,7 @@ export const ImageWrapper = styled('div')`
 
 export const ProductImage = styled('img')`
     margin: 0 auto;
+    max-height: 100%;
 `;
 
 export const InfoWrapper = styled('div')`

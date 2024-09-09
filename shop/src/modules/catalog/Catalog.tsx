@@ -1,16 +1,31 @@
-import { HeadphoneCategory, headphones } from "@/data/data";
 import {
     CatalogWrapper,
     TitleChapter,
     ProductsWrapper,
 } from "@/modules/catalog/style";
-import Card from "@/modules/productCard/Card";
-import { useEffect } from "react";
+import Card from "@/common/components/productCard/Card";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { Product } from "@/store/data/data";
+import ProductModal from "./modal/ProductModal";
 
 const Catalog = () => {
-    const productes: HeadphoneCategory[] = headphones;
+    const productes = useSelector((state: RootState) => state.products.products);
     const { t } = useTranslation();
+
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+  
+    const openModal = (product: Product) => {
+      setSelectedProduct(product);
+      setIsModalOpen(true);
+    };
+  
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
 
     useEffect(() => {
         window.scrollTo({
@@ -21,6 +36,12 @@ const Catalog = () => {
 
     return (
         <CatalogWrapper>
+            <ProductModal 
+                isOpen={isModalOpen} 
+                setOpen={closeModal} 
+                product={selectedProduct}
+            />
+
             {productes.map(headfones => (
                 <>
                     <TitleChapter>{t(headfones.title)}</TitleChapter>
@@ -30,6 +51,7 @@ const Catalog = () => {
                             <Card
                                 key={headfone.id}
                                 cardInfo={headfone}
+                                click={()=>openModal(headfone)}
                             />
                         ))}
                     </ProductsWrapper>

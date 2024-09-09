@@ -12,10 +12,11 @@ import {
     QuantityProduct,
     TotalProductWrapper,
     QuantityProductWrapper
-} from "@/modules/productCard/style";
+} from "@/common/components/productCard/style";
 import trash from "@/common/icons/trash.svg";
 import { memo, useState } from "react";
 import { useActions } from "@/store/actions";
+import { useTranslation } from "react-i18next";
 
 interface CartCardProps {
     id: number;
@@ -33,6 +34,7 @@ const CartCard = memo(({
     quantity,
 }: CartCardProps) => {
     const [isDelete, setIsDelete] = useState(false);
+    const {t} = useTranslation();
 
     const {
         setQuantity,
@@ -47,7 +49,7 @@ const CartCard = memo(({
     return (
         <CartCardWrapper $isDelete={isDelete}>
             <CartCardInfo>
-                <CartProductImg src={img} alt="Картинка товара" />
+                <CartProductImg src={img} alt={t('product')} />
 
                 <CartProductInfo>
                     <CartProductTitle>
@@ -60,7 +62,7 @@ const CartCard = memo(({
                 </CartProductInfo>
 
                 <DeleteProductButton onClick={deleteItem}>
-                    <DeleteIcon src={trash} />
+                    <DeleteIcon src={trash} alt={t('deleteIcon')}/>
                 </DeleteProductButton>
             </CartCardInfo>
 

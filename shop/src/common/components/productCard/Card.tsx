@@ -9,28 +9,31 @@ import {
     RatingStar,
     ProductAction,
     ImageWrapper,
-} from "@/modules/productCard/style";
+} from "@/common/components/productCard/style";
 import star from "@/common/icons/star.svg";
-import { Product } from "@/data/data";
+import { Product } from "@/store/data/data";
 import { useActions } from "@/store/actions";
 import { useTranslation } from "react-i18next";
 
 interface CardProps {
     cardInfo: Product;
+    click: ()=>void;
 };
 
-const Card = ({ cardInfo }: CardProps) => {
+const Card = ({ cardInfo, click }: CardProps) => {
     const { addCartProduct } = useActions();
+
     const { t } = useTranslation();
 
-    const setItemCart = () => {
+    const setItemCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation();
         addCartProduct(cardInfo);
     };
 
     return (
-        <CardWrapper>
+        <CardWrapper onClick={click}>
             <ImageWrapper>
-                <ProductImage src={cardInfo.img} alt="товар" />
+                <ProductImage src={cardInfo.img} alt={t('product')} />
             </ImageWrapper>
 
             <InfoWrapper>
@@ -43,7 +46,7 @@ const Card = ({ cardInfo }: CardProps) => {
                 </ProductPrice>
 
                 <ProductRatingWrapper>
-                    <RatingStar src={star} alt="Рейтинг товара" />
+                    <RatingStar src={star} alt={t('rating')} />
                     <ProductRating>{cardInfo.rating}</ProductRating>
                 </ProductRatingWrapper>
 

@@ -9,7 +9,7 @@ import {
     PaymentButton,
     PositionWrapper,
 } from "@/modules/cart/style";
-import CartCard from "@/modules/productCard/CartCard";
+import CartCard from "@/common/components/productCard/CartCard";
 import { RootState } from "@/store/store";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";

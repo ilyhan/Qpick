@@ -11,6 +11,7 @@ export const colors = {
     black: "rgba(0, 0, 0, 1)",
     richBlack: "rgba(16, 16, 16, 1)",
     darkAngled: "rgba(28, 28, 39, 1)",
+    blackTransparent: "rgba(0, 0, 0, 0.4)",
 
     //Accent
     accentColor: "rgba(255, 165, 66, 1)",
@@ -37,7 +38,7 @@ export const screen = {
     mobileScreenWidthAbove: "769px",
 
     lMobileScreenWidth: "424px",
-    lMobileScreenWidthAbove: "425px",
+    lMobileScreenWidthAbove: "426px",
 
     mMobileScreenWidth: "375px",
     mMobileScreenWidthAbove: "376px",

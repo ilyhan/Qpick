@@ -17,12 +17,13 @@ import telegram from "@/common/icons/Telegram.svg";
 import whatsapp from "@/common/icons/Whatsapp.svg";
 import ru from "@/common/icons/ru.svg";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     const { t, i18n } = useTranslation();
 
     const changeLanguage = (lng: string) => {
-      i18n.changeLanguage(lng);
+        i18n.changeLanguage(lng);
     };
 
     return (
@@ -30,9 +31,23 @@ const Footer = () => {
             <Logo />
 
             <NavList>
-                <NavItem>{t('vishflist')}</NavItem>
-                <NavItem>{t('cart')}</NavItem>
-                <NavItem>{t('contact')}</NavItem>
+                <NavItem>
+                    <Link to='/qpick/vishflist'>
+                        {t('vishflist')}
+                    </Link>
+                </NavItem>
+
+                <NavItem>
+                    <Link to='/qpick/cart'>
+                        {t('cart')}
+                    </Link>
+                </NavItem>
+
+                <NavItem>
+                    <Link to='/qpick/contact'>
+                        {t('contact')}
+                    </Link>
+                </NavItem>
             </NavList>
 
             <TermsUseWrapper>
@@ -59,15 +74,15 @@ const Footer = () => {
 
             <ConnectMessenger>
                 <MessengerBtn>
-                    <MessengerIcon src={vk} />
+                    <MessengerIcon src={vk} alt={t('vk')}/>
                 </MessengerBtn>
 
                 <MessengerBtn>
-                    <MessengerIcon src={telegram} />
+                    <MessengerIcon src={telegram} alt={t('telegram')}/>
                 </MessengerBtn>
 
                 <MessengerBtn>
-                    <MessengerIcon src={whatsapp} />
+                    <MessengerIcon src={whatsapp} alt={t('whatsApp')}/>
                 </MessengerBtn>
             </ConnectMessenger>
         </FooterWrapper>

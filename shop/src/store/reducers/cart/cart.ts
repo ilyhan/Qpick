@@ -1,19 +1,7 @@
 
-import { Product } from "@/data/data";
+import { Product } from "@/store/data/data";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface IQuantity {
-    id: number;
-    change: number;
-};
-
-export interface CartProduct extends Product {
-    quantity: number;
-};
-
-export interface ICart {
-    products: CartProduct[];
-};
+import { CartProduct, ICart, IQuantity } from "@/store/reducers/cart/interface";
 
 const initialState: ICart = {
     products: [],

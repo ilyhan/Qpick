@@ -24,7 +24,7 @@ export const hoverActive = css`
   @media (hover: hover) {
     transition: ${transitions.fastTransition};
     &:hover {
-      opacity: 0.8;
+      opacity: 0.75;
     }
 
     &:active {
@@ -43,11 +43,11 @@ export const hoverActiveMove = css`
   @media (hover: hover) {
     transition: ${transitions.fastTransition};
     &:hover {
-      opacity: 0.8;
+      opacity: 0.7;
     }
 
     &:active {
-      opacity: 0.65;
+      opacity: 0.55;
       translate: 0px 1px;
     }
   }
