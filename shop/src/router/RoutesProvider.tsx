@@ -1,6 +1,7 @@
 import MainPage from "@/modules/MainPage";
 import Cart from "@/modules/cart/Cart";
 import Catalog from "@/modules/catalog/Catalog";
+import Wishlist from "@/modules/wishlist/Wishlist";
 import {
   Route,
   createBrowserRouter,
@@ -16,6 +17,7 @@ export default function RoutesProvider() {
         <Route path="qpick/" element={<MainPage/>}>
           <Route path="catalog" element={<Catalog/>} />
           <Route path="cart" element={<Cart/>} />
+          <Route path="wishlist" element={<Wishlist/>} />
         </Route>
         <Route path="*" element={<Navigate to="qpick/catalog" replace />} />
       </>

@@ -11,19 +11,33 @@ import {
     ActionsWrapper,
 } from "@/modules/catalog/modal/style";
 import { useTranslation } from "react-i18next";
+import { useActions } from "@/store/actions";
+import { useState } from "react";
 
 interface ProductModalProps {
     isOpen: boolean;
     setOpen: () => void;
-    product: Product | null;
+    product: Product;
 };
 
 const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
-    if (!product) {
-        return null;
+    const [inWishlist, setInQ] = useState(!!product.isFavorite);
+
+    const {
+        addToWishlist,
+        addCartProduct
+    } = useActions();
+
+    const { t } = useTranslation();
+
+    const handleAddToCart = () => {
+        addCartProduct(product);
     };
 
-    const {t} = useTranslation();
+    const handleSetFavorite = () => {
+        setInQ(true)
+        addToWishlist({ id: product.id });
+    };
 
     return (
         <Modal
@@ -47,12 +61,12 @@ const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
                     </ModalPrice>
 
                     <ActionsWrapper>
-                        <ModalButton>
+                        <ModalButton onClick={handleAddToCart}>
                             Купить
                         </ModalButton>
 
-                        <ModalButton>
-                            В избранное
+                        <ModalButton onClick={handleSetFavorite} disabled={inWishlist}>
+                            {inWishlist ? 'В избранном' : 'В избранное'}
                         </ModalButton>
                     </ActionsWrapper>
                 </PoductInfoWrapper>

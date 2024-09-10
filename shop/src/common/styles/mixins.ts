@@ -58,3 +58,13 @@ export const hoverActiveMove = css`
     }
   }
 `;
+
+export const disabledButton = css`
+  &:disabled{
+    cursor: default;
+    &:hover, &:active{
+      opacity: 1;
+      translate: 0;
+    }
+  }
+`;

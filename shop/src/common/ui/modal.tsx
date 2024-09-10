@@ -86,6 +86,7 @@ const Modal = ({
 
         setTimeout(() => {
             onClose?.();
+            document.body.style.overflow = "auto";
         }, 300);
     };
 
@@ -94,7 +95,6 @@ const Modal = ({
             document.body.style.overflow = "hidden";
             setIsVisible(true);
         } else {
-            document.body.style.overflow = "auto";
             setIsVisible(false);
         }
     }, [isOpen]);

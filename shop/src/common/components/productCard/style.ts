@@ -1,4 +1,4 @@
-import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins";
+import { clampText, disabledButton, hoverActiveMove, resetButton } from "@/common/styles/mixins";
 import { borders, colors, fonts, screen, shadows, transitions } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
@@ -66,6 +66,19 @@ export const InfoWrapper = styled('div')`
     font-weight: ${fonts.weights.semiBold};
 `;
 
+export const FavoriteButton = styled('button')`
+    ${resetButton}
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    ${hoverActiveMove}
+    z-index: 5;
+`;
+
+export const FavoriteIcon = styled('img')`
+
+`;
+
 export const ProductTitle = styled('span')`
     color: ${colors.darkAngled};
     justify-self: start;
@@ -114,6 +127,7 @@ export const CartCardWrapper = styled('div') <{ $isDelete: boolean }>`
 export const CartProductImg = styled('img')`
     width: 146px;
     height: 136px;
+    object-fit: contain;
 `;
 
 export const CartProductTitle = styled('span')`
@@ -141,14 +155,8 @@ export const QuantityButton = styled('button')`
     color: ${colors.white};
     font-size: 20px;
     ${hoverActiveMove}
+    ${disabledButton}
 
-    &:disabled{
-        cursor: default;
-        &:hover{
-            opacity: 1;
-            translate: 0;
-        }
-    }
 `;
 
 export const DeleteProductButton = styled('button')`

@@ -17,14 +17,15 @@ const Catalog = () => {
 
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
     const openModal = (product: Product) => {
-      setSelectedProduct(product);
-      setIsModalOpen(true);
+        setSelectedProduct(product);
+        setIsModalOpen(true);
     };
-  
+
     const closeModal = () => {
-      setIsModalOpen(false);
+        setIsModalOpen(false);
+        setSelectedProduct(null);
     };
 
     useEffect(() => {
@@ -36,11 +37,11 @@ const Catalog = () => {
 
     return (
         <CatalogWrapper>
-            <ProductModal 
-                isOpen={isModalOpen} 
-                setOpen={closeModal} 
+            {selectedProduct && <ProductModal
+                isOpen={isModalOpen}
+                setOpen={closeModal}
                 product={selectedProduct}
-            />
+            />}
 
             {productes.map(headfones => (
                 <>
@@ -51,7 +52,7 @@ const Catalog = () => {
                             <Card
                                 key={headfone.id}
                                 cardInfo={headfone}
-                                click={()=>openModal(headfone)}
+                                click={() => openModal(headfone)}
                             />
                         ))}
                     </ProductsWrapper>

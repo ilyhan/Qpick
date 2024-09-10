@@ -1,26 +1,24 @@
 import { NavIconWrapper, NavIconStyle, CountProducts } from "@/common/components/navsection/style";
-import { RootState } from "@/store/store";
-import { useSelector } from "react-redux";
+import { memo } from "react";
 
 interface NavIconProps {
     icon: string;
     link: string;
     alt: string;
+    count: number;
 };
 
-const NavIcon = ({ icon, link, alt }: NavIconProps) => {
-    const itemCount = useSelector((state: RootState) => state.cart.products.length);
-    
+const NavIcon = memo(({ icon, link, alt, count }: NavIconProps) => {
     return (
         <NavIconWrapper to={link}>
             <NavIconStyle src={icon} alt={alt} />
-            {itemCount > 0 && (
-                <CountProducts key={itemCount}>
-                    {itemCount > 9 ? '9+' : itemCount}
+            {count > 0 && (
+                <CountProducts key={count}>
+                    {count > 9 ? '9+' : count}
                 </CountProducts>
             )}
         </NavIconWrapper>
     );
-};
+});
 
 export default NavIcon;

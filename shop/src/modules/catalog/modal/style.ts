@@ -1,4 +1,4 @@
-import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins";
+import { clampText, disabledButton, hoverActiveMove, resetButton } from "@/common/styles/mixins";
 import { colors, fonts, screen } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
@@ -56,6 +56,7 @@ export const ModalButton = styled('button')`
     ${resetButton}
     font-weight: ${fonts.weights.semiBold};
     ${hoverActiveMove}
+    ${disabledButton}
 `;
 
 export const ActionsWrapper = styled('div')`

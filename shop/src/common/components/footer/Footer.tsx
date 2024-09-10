@@ -32,8 +32,8 @@ const Footer = () => {
 
             <NavList>
                 <NavItem>
-                    <Link to='/qpick/vishflist'>
-                        {t('vishflist')}
+                    <Link to='/qpick/wishlist'>
+                        {t('wishlist')}
                     </Link>
                 </NavItem>
 
