@@ -71,6 +71,7 @@ export const borders = {
     circle: "50%",
     smallRadius: "20px",
     defaultRadius: "30px",
+    extraSmallRadius: "10px",
 };
 
 export const shadows = {

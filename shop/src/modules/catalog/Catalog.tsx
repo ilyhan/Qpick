@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { Product } from "@/store/data/data";
-import ProductModal from "./modal/ProductModal";
+import ProductModal from "@/modules/catalog/modal/ProductModal";
 
 const Catalog = () => {
     const productes = useSelector((state: RootState) => state.products.products);

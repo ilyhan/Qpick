@@ -44,7 +44,7 @@ const Cart = () => {
                             <TotalResult>P {TotalPrice()}</TotalResult>
                         </SideBar>
 
-                        <PaymentButton>
+                        <PaymentButton to='/qpick/checkout'>
                             {t('registration')}
                         </PaymentButton>
                     </SideBarWrapper>

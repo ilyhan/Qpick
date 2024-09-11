@@ -1,5 +1,6 @@
-import { clampText, hoverActiveMove, resetButton } from "@/common/styles/mixins";
+import { clampText, hoverActiveMove } from "@/common/styles/mixins";
 import { borders, colors, fonts, shadows, screen } from "@/common/styles/styleConstants";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const CartWtapper = styled('section')`
@@ -63,8 +64,10 @@ export const TotalResult = styled('span')`
     text-transform: uppercase;
 `;
 
-export const PaymentButton = styled('button')`
-    ${resetButton}
+export const PaymentButton = styled(Link)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 0;
     top: 55px;

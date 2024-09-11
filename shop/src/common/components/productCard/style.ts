@@ -207,3 +207,29 @@ export const QuantityProduct = styled('div')`
     ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
     font-weight: ${fonts.weights.semiBold};
 `;
+
+export const ShortCardWrapper = styled('div')`
+    position: relative;
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    background-color: ${colors.white};
+    box-shadow: ${shadows.defaultShadow};
+    border-radius: ${borders.extraSmallRadius};
+`;
+
+export const ShortCardImage = styled('img')`
+    width: 100%;
+    height: 90%;
+    object-fit: contain;
+`;
+
+export const ShortCardQuantity = styled('p')`
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    font-size: ${fonts.sizes.title};
+    background-color: ${colors.white};
+    border-radius: ${borders.circle};
+    padding: 3px;
+`;

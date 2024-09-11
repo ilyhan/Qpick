@@ -10,7 +10,7 @@ export const WishlistWrapper = styled('section')`
 export const WishlistTitle = styled('h2')`
     ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     font-weight: ${fonts.weights.semiBold};
-    color: ${colors.gray};
+    color: ${colors.darkAngled};
     margin-bottom: 20px;
 `;
 
