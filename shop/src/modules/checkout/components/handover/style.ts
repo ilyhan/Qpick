@@ -13,7 +13,7 @@ export const HandoverWrapper = styled('div')`
 `;
 
 export const ObtainingMethod = styled('p')`
-    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
+    ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     font-weight: ${fonts.weights.semiBold};
 `;
 

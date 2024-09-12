@@ -2,7 +2,10 @@ import Modal from "@/common/ui/modal";
 import { 
     ModalWrapper,
     ModalProductsList,
-    ModalProductItem
+    ModalProductItem,
+    ModalProductImg,
+    ModalProductTitle,
+    ModalProductQuantity,
 } from "@/modules/checkout/modal/selectedproducts/style";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
@@ -25,9 +28,9 @@ const ProductsModal = ({ isOpen, setOpen }: ProductsModalProps) => {
                 <ModalProductsList>
                     {productsList.map(product=>(
                         <ModalProductItem>
-                            <img src={product.img} height={100}/>
-                            <p>{product.title}</p>
-                            <p>{product.quantity} шт.</p>
+                            <ModalProductImg src={product.img} alt={product.title}/>
+                                <ModalProductTitle>{product.title}</ModalProductTitle>
+                                <ModalProductQuantity>{product.quantity} шт.</ModalProductQuantity>
                         </ModalProductItem>
                     ))}
                 </ModalProductsList>

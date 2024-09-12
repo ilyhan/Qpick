@@ -44,7 +44,10 @@ const Card = ({ cardInfo, click, withHeart }: CardProps) => {
     return (
         <CardWrapper onClick={click}>
             {(withHeart && cardInfo?.isFavorite) &&
-                <FavoriteButton onClick={handleSetFavorite}>
+                <FavoriteButton 
+                    onClick={handleSetFavorite}
+                    title="Удалить из избранного"
+                >
                     <FavoriteIcon src={heartActive} />
                 </FavoriteButton>
             }

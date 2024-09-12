@@ -3,16 +3,12 @@ import {
     CartTitle,
     CartList,
     CartOrdersWrapper,
-    SideBarWrapper,
-    SideBar,
-    TotalResult,
-    PaymentButton,
-    PositionWrapper,
 } from "@/modules/cart/style";
 import CartCard from "@/common/components/productCard/CartCard";
 import { RootState } from "@/store/store";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import TotalSideBar from "@/common/components/sidebar/TotalSideBar";
 
 const Cart = () => {
     const cart = useSelector((state: RootState) => state.cart.products);
@@ -37,18 +33,13 @@ const Cart = () => {
                     ))}
                 </CartList>
 
-                {cart.length ? <PositionWrapper>
-                    <SideBarWrapper>
-                        <SideBar>
-                            <TotalResult>{t('total')}</TotalResult>
-                            <TotalResult>P {TotalPrice()}</TotalResult>
-                        </SideBar>
-
-                        <PaymentButton to='/qpick/checkout'>
-                            {t('registration')}
-                        </PaymentButton>
-                    </SideBarWrapper>
-                </PositionWrapper> : null}
+                {cart.length
+                    ? <TotalSideBar
+                        price={TotalPrice()}
+                        text="Перейти к оформлению"
+                        link="/qpick/checkout"
+                    />
+                    : null}
             </CartOrdersWrapper>
         </CartWtapper >
     );

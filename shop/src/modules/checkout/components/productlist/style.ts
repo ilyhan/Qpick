@@ -10,7 +10,7 @@ export const ProductListWrapper = styled('div')`
 `;
 
 export const ProductListTitle = styled('p')`
-    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
+    ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     font-weight: ${fonts.weights.semiBold};
     margin-bottom: 15px;
 `;

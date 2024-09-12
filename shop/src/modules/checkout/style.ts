@@ -3,11 +3,21 @@ import { colors, fonts } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const CheckoutWrapper = styled('section')`
+    width: 100%;
+    margin-block: 28px 20px;
+`;
+
+export const CheckoutInfo = styled('div')`
     display: flex;
     flex-direction: column;
     gap: 15px;
+`;
+
+export const CheckoutMain = styled('div')`
+    display: grid;
+    grid-template-columns: auto 350px;
+    gap: 50px;
     width: 100%;
-    margin-block: 28px 20px;
 `;
 
 export const CheckoutTitle = styled('h1')`

@@ -24,7 +24,8 @@ export interface ModalProps {
 const ModalSection = styled("section") <{ $zindex: number }>`
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    padding-block: 7rem;
     position: fixed;
     top: 0;
     left: 0;
@@ -36,7 +37,9 @@ const ModalSection = styled("section") <{ $zindex: number }>`
 
     @media (max-width: ${screen.lMobileScreenWidthAbove}){
         align-items: end;
+        padding-block: 0px;
     }
+    overflow: auto;
 `;
 
 const ModalContent = styled("div") <{ $visible: boolean }>`
@@ -46,6 +49,7 @@ const ModalContent = styled("div") <{ $visible: boolean }>`
     box-shadow: ${shadows.defaultShadow};
     height: fit-content;
     width: fit-content;
+    margin: auto 0;
     transition: ${(props) => (props.$visible ? transitions.mediumTransition : transitions.fastTransition)};
     opacity: ${(props) => (props.$visible ? '1' : "0")};
     transform: ${(props) => (props.$visible ? "scale(1)" : "scale(0.5)")};
@@ -95,7 +99,6 @@ const Modal = ({
             document.body.style.overflow = "hidden";
             setIsVisible(true);
         } else {
-            document.body.style.overflow = "auto";
             setIsVisible(false);
         }
     }, [isOpen]);

@@ -1,11 +1,16 @@
 import {
     CheckoutWrapper,
     CheckoutTitle,
+    CheckoutMain,
+    CheckoutInfo
 } from "@/modules/checkout/style";
 import Handover from "@/modules/checkout/components/handover/Handover";
 import { useState } from "react";
 import ProductList from "@/modules/checkout/components/productlist/ProductList";
-import MapButton from "@/modules/checkout/components/map/MapButton";
+import AccessibleStores from "@/modules/checkout/components/shopsChoose/AccessibleStores";
+import TotalSideBar from "@/common/components/sidebar/TotalSideBar";
+import UserForm from "@/modules/checkout/components/data/UserForm";
+import AddressForm from "@/modules/checkout/components/delivery/AddressForm";
 
 const Checkout = () => {
     const [selectedTab, setSelectedTab] = useState<'Pickup' | 'Delivery'>('Pickup');
@@ -14,15 +19,26 @@ const Checkout = () => {
         <CheckoutWrapper>
             <CheckoutTitle>Оформление заказа</CheckoutTitle>
 
-            <Handover
-                selectedTab={selectedTab}
-                onSwap={setSelectedTab}
-            />
+            <CheckoutMain>
+                <CheckoutInfo>
+                    <UserForm/>
 
-            {selectedTab === 'Pickup' && <MapButton/>}
-            {selectedTab === 'Delivery' && <div>Delivery</div>}
+                    <Handover
+                        selectedTab={selectedTab}
+                        onSwap={setSelectedTab}
+                    />
 
-            <ProductList/>
+                    {selectedTab === 'Pickup' && <AccessibleStores />}
+                    {selectedTab === 'Delivery' && <AddressForm/>}
+
+                    <ProductList />
+                </CheckoutInfo>
+
+                <TotalSideBar
+                    price={1234}
+                    text="Купить все"
+                />
+            </CheckoutMain>
         </CheckoutWrapper>
     )
 };
