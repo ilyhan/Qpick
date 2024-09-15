@@ -1,5 +1,9 @@
 import Logo from "@/common/components/Logo";
-import { NavWrapper, UserActions } from "@/common/components/navsection/style";
+import { 
+    NavWrapper, 
+    UserActions,
+    VisuallyHidden
+} from "@/common/components/navsection/style";
 import cart from "@/common/icons/cart.svg";
 import heart from "@/common/icons/heart.svg";
 import NavIcon from "@/common/components/navsection/NavIcon";
@@ -15,7 +19,9 @@ const NavSection = () => {
 
     return (
         <NavWrapper>
+            <VisuallyHidden>Qpick</VisuallyHidden>
             <Logo />
+
             <UserActions>
                 <NavIcon
                     icon={heart}

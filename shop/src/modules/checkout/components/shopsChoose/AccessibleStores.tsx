@@ -10,16 +10,16 @@ import {
     StoreInfo,
     LocationWrapper
 } from "@/modules/checkout/components/shopsChoose/style";
+import { useActions } from "@/store/actions";
 import { accessibleStores } from "@/store/data/stores";
-import { useState } from "react";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
 const AccessibleStores = () => {
-    const [selected, setSelected] = useState('');
+    const storeSelected = useSelector((state: RootState) => state.order.pickup);
     const stores = accessibleStores;
 
-    const handleSelect = (address: string) => {
-        setSelected(address);
-    };
+    const { setStore } = useActions();
 
     return (
         <StoresWrapper>
@@ -44,11 +44,11 @@ const AccessibleStores = () => {
                             </TimeWork>
                         </StoreInfo>
 
-                        <StoreButton 
-                            $isSelected={selected === store.address}
-                            onClick={()=>handleSelect(store.address)}    
+                        <StoreButton
+                            $isSelected={storeSelected === store.address}
+                            onClick={() => setStore({ storeAddress: store.address })}
                         >
-                            {store.address === selected ? "Выбран" : "Выбрать"}
+                            {store.address === storeSelected ? "Выбран" : "Выбрать"}
                         </StoreButton>
                     </StoresItem>
                 ))}

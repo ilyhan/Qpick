@@ -12,7 +12,7 @@ import { useState } from "react";
 import ProductsModal from "../../modal/selectedproducts/ProductsModal";
 
 export const ProductList = () => {
-    const productList = useSelector((state: RootState) => state.cart.products);
+    const productList = useSelector((state: RootState) => state.order.products);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpenModal = () => {

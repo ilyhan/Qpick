@@ -4,26 +4,20 @@ import {
     TabItem,
     TabButton
 } from "@/modules/checkout/components/tabs/style";
-import { useState } from "react";
+import { useActions } from "@/store/actions";
+import { RootState } from "@/store/store";
+import { useSelector } from "react-redux";
 
-interface TabsMenuProps {
-    onSwap: (tab: 'Pickup' | 'Delivery') => void;
-};
-
-const TabsMenu = ({ onSwap }: TabsMenuProps) => {
-    const [selectedTab, setSelectedTab] = useState('Pickup');
-
-    const handleSetTab = (newTab: 'Pickup' | 'Delivery') => {
-        setSelectedTab(newTab);
-        onSwap(newTab);
-    };
+const TabsMenu = () => {
+    const selectedTab = useSelector((state: RootState) => state.order.type);
+    const { setType } = useActions();
 
     return (
         <TabsMenuWrapper>
             <TabsList>
                 <TabItem>
                     <TabButton
-                        onClick={() => handleSetTab('Pickup')}
+                        onClick={() => setType({ newType: 'Pickup' })}
                         $isSelected={selectedTab === 'Pickup'}
                     >
                         Самовывоз
@@ -32,7 +26,7 @@ const TabsMenu = ({ onSwap }: TabsMenuProps) => {
 
                 <TabItem>
                     <TabButton
-                        onClick={() => handleSetTab('Delivery')}
+                        onClick={() => setType({ newType: 'Delivery' })}
                         $isSelected={selectedTab === 'Delivery'}
                     >
                         Доставка

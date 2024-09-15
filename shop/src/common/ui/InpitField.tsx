@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { colors, fonts, transitions } from '@/common/styles/styleConstants';
 import { clampText } from '@/common/styles/mixins';
+import { memo } from 'react';
 
 interface InputFieldProps {
     label: string;
+    value: string;
     required?: boolean;
     type?: string;
+    maxLength?: number;
+    onChange: (value: string)=>void;
 };
 
 const InputWrapper = styled.div`
@@ -21,7 +25,7 @@ const InputStyled = styled('input')`
   width: 100%;
   background: none;
   border: none;
-  border-bottom: 1px solid ${colors.backgroundGray};
+  border-bottom: 2px solid ${colors.backgroundGray};
 
   &:focus {
     outline: none;
@@ -46,13 +50,30 @@ const LabelStyled = styled('label')`
   transition: ${transitions.fastTransition};
 `;
 
-const InputField = ({ label, required = true, type = "text" }: InputFieldProps) => {
+const InputField = memo(({
+    label,
+    value,
+    type = "text",
+    required = true,
+    maxLength,
+    onChange,
+}: InputFieldProps) => {
+    const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange?.(e.target.value);
+    };
+
     return (
         <InputWrapper>
-            <InputStyled required={required} type={type} />
+            <InputStyled
+                type={type}
+                value={value}
+                required={required}
+                onChange={onInputChange}
+                maxLength={maxLength}
+            />
             <LabelStyled>{label}</LabelStyled>
         </InputWrapper>
     );
-};
+});
 
 export default InputField;

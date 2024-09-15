@@ -16,7 +16,7 @@ interface ProductsModalProps {
 };
 
 const ProductsModal = ({ isOpen, setOpen }: ProductsModalProps) => {
-    const productsList = useSelector((state: RootState) => state.cart.products);
+    const productsList = useSelector((state: RootState) => state.order.products);
 
     return (
         <Modal

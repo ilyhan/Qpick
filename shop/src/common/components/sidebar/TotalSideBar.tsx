@@ -12,15 +12,16 @@ interface TotalSideBarProps {
     price: number;
     text: string;
     link?: string;
+    disabled?: boolean;
     onClick?: () => void;
 };
 
-const TotalSideBar = ({ price, text, link, onClick }: TotalSideBarProps) => {
+const TotalSideBar = ({ price, text, link, disabled, onClick }: TotalSideBarProps) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
     const handleClick = () => {
-        if(link) {
+        if (link) {
             navigate(link);
         }
         onClick?.();
@@ -34,7 +35,7 @@ const TotalSideBar = ({ price, text, link, onClick }: TotalSideBarProps) => {
                     <TotalResult>₽ {price}</TotalResult>
                 </SideBar>
 
-                <PaymentButton onClick={handleClick}>
+                <PaymentButton onClick={handleClick} disabled={disabled}>
                     {text}
                 </PaymentButton>
             </SideBarWrapper>
