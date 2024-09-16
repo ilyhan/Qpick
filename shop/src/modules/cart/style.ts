@@ -7,7 +7,7 @@ export const CartWtapper = styled('section')`
     margin-block: 30px 20px;
 `;
 
-export const CartTitle = styled('h1')`
+export const CartTitle = styled('h2')`
     ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     color: ${colors.darkAngled};
     font-weight: ${fonts.weights.semiBold};

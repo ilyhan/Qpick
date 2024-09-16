@@ -17,28 +17,36 @@ const productsSlice = createSlice({
     initialState,
     reducers: {
         addToWishlist(state, action: PayloadAction<{ id: number }>) {
-            state.products.forEach(item => {
-                item.productes = item.productes.map(product => {
+            let isAdded = false; 
+
+            state.products.forEach(category => {
+                category.productes.forEach(product => {
                     if (product.id === action.payload.id && !product.isFavorite) {
-                        state.count = state.count + 1;
-                        return { ...product, isFavorite: true }
-                    } else {
-                        return product;
+                        product.isFavorite = true; 
+                        isAdded = true;
                     }
                 });
             });
+
+            if (isAdded) {
+                state.count += 1; 
+            }
         },
         deleteFromWishlist(state, action: PayloadAction<{ id: number }>) {
-            state.products.forEach(item => {
-                item.productes = item.productes.map(product => {
+            let isRemoved = false; 
+
+            state.products.forEach(category => {
+                category.productes.forEach(product => {
                     if (product.id === action.payload.id && product.isFavorite) {
-                        state.count = state.count - 1;
-                        return { ...product, isFavorite: false }
-                    } else {
-                        return product;
+                        product.isFavorite = false; 
+                        isRemoved = true;
                     }
                 });
             });
+
+            if (isRemoved) {
+                state.count -= 1; 
+            }
         },
     }
 });

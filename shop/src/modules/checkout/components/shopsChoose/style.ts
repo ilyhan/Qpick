@@ -1,15 +1,12 @@
-import { clampText, hoverActive, resetButton } from "@/common/styles/mixins";
+import { clampText, hoverActive, resetButton, sizeWrapper } from "@/common/styles/mixins";
 import { borders, colors, fonts, transitions } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const StoresWrapper = styled('div')`
-    width: 100%;
-    padding: 20px 25px;
-    background-color: ${colors.white};
-    border-radius: ${borders.smallRadius};
+    ${sizeWrapper}
 `;
 
-export const StoresTitle = styled('p')`
+export const StoresTitle = styled('h3')`
     ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     font-weight: ${fonts.weights.semiBold};
 `;

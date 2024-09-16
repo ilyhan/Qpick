@@ -21,7 +21,7 @@ interface ProductModalProps {
 };
 
 const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
-    const [inWishlist, setInQ] = useState(!!product.isFavorite);
+    const [inWishlist, setInWishlist] = useState(!!product.isFavorite);
 
     const {
         addToWishlist,
@@ -35,7 +35,7 @@ const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
     };
 
     const handleSetFavorite = () => {
-        setInQ(true)
+        setInWishlist(true)
         addToWishlist({ id: product.id });
     };
 
@@ -61,12 +61,19 @@ const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
                     </ModalPrice>
 
                     <ActionsWrapper>
-                        <ModalButton onClick={handleAddToCart}>
-                            Купить
+                        <ModalButton
+                            onClick={handleAddToCart}
+                            title={t('addCart')}
+                        >
+                            {t('buy')}
                         </ModalButton>
 
-                        <ModalButton onClick={handleSetFavorite} disabled={inWishlist}>
-                            {inWishlist ? 'В избранном' : 'В избранное'}
+                        <ModalButton
+                            onClick={handleSetFavorite}
+                            disabled={inWishlist}
+                            title={t('addFavorite')}
+                        >
+                            {inWishlist ? t('addWishlist') : t('inWishlist')}
                         </ModalButton>
                     </ActionsWrapper>
                 </PoductInfoWrapper>

@@ -7,9 +7,11 @@ import {
 } from "@/modules/checkout/components/data/style";
 import { useActions } from "@/store/actions";
 import { RootState } from "@/store/store";
+import { memo, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-const UserForm = () => {
+const UserForm = memo(() => {
     const {
         firstName,
         lastName,
@@ -22,19 +24,21 @@ const UserForm = () => {
         setErrors
     } = useActions();
 
+    const { t } = useTranslation();
+
     const validateFirst = (val: string) => {
-        setErrors({ field: 'firstName', error: !val ? 'Имя обязательно' : undefined });
+        setErrors({ field: 'firstName', error: !val ? 'nameReq' : undefined });
     };
 
     const validateLast = (val: string) => {
-        setErrors({ field: 'lastName', error: !val ? 'Фамилия обязательна' : undefined });
+        setErrors({ field: 'lastName', error: !val ? 'lastReq' : undefined });
     };
 
     const validatePhoneNumber = (val: string) => {
         if (!val) {
-            setErrors({ field: 'phoneNumber', error: 'Номер телефона обязателен' });
+            setErrors({ field: 'phoneNumber', error: 'phoneReq' });
         } else if (!/^\+?\d{10,15}$/.test(val)) {
-            setErrors({ field: 'phoneNumber', error: 'Неверный формат номера телефона' });
+            setErrors({ field: 'phoneNumber', error: 'phoneFormat' });
         } else {
             setErrors({ field: 'phoneNumber', error: undefined });
         }
@@ -44,53 +48,53 @@ const UserForm = () => {
     const validateLastName = useDebounce(validateLast, 500);
     const validatePhone = useDebounce(validatePhoneNumber, 500);
 
-    const setFirstName = (val: string) => {
+    const setFirstName = useCallback((val: string) => {
         setField({ field: 'firstName', value: val });
         validateName(val);
-    };
+    }, []);
 
-    const setLastName = (val: string) => {
+    const setLastName = useCallback((val: string) => {
         setField({ field: 'lastName', value: val });
         validateLastName(val);
-    };
+    }, []);
 
-    const setPhoneNumber = (val: string) => {
+    const setPhoneNumber = useCallback((val: string) => {
         setField({ field: 'phoneNumber', value: val });
         validatePhone(val);
-    };
+    }, []);
 
     return (
         <UserFormWrapper>
-            <TitleForm>Покупатель</TitleForm>
+            <TitleForm>{t('buyer')}</TitleForm>
 
             <FormUser>
                 <InputField
                     value={firstName}
                     onChange={setFirstName}
-                    label="Имя*"
+                    label={t('name')}
                     type="text"
                 />
-                {errors.firstName && <p>{errors.firstName}</p>}
+                {errors.firstName && <p>{t(errors.firstName)}</p>}
 
                 <InputField
                     value={lastName}
                     onChange={setLastName}
-                    label="Фамилия*"
+                    label={t('last')}
                     type="text"
                 />
-                {errors.lastName && <p>{errors.lastName}</p>}
+                {errors.lastName && <p>{t(errors.lastName)}</p>}
 
                 <InputField
                     value={phoneNumber}
                     onChange={setPhoneNumber}
-                    label="Номер телефона*"
+                    label={t('phone')}
                     type="tel"
                     maxLength={12}
                 />
-                {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
+                {errors.phoneNumber && <p>{t(errors.phoneNumber)}</p>}
             </FormUser>
         </UserFormWrapper>
     );
-};
+});
 
 export default UserForm;

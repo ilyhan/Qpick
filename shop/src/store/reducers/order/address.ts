@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ChangeField, IError } from './interface';
 
 export interface IAddress {
     address: string;
@@ -7,23 +8,33 @@ export interface IAddress {
     floor?: string;
     comment?: string;
     errorAddress?: string;
+    isValid?: boolean;
 };
+
 
 const initialState: IAddress = {
     address: '',
+    isValid: false,
 };
 
 const addressSlice = createSlice({
     name: 'adress',
     initialState,
     reducers: {
-        setFieldAdress(state, action: PayloadAction<{ field: keyof IAddress; value: string }>) {
-            state[action.payload.field] = action.payload.value;
+        setFieldAdress(state, action: PayloadAction<ChangeField>) {
+            const { field, value } = action.payload;
+
+            if (field !== 'isValid')
+                state[field] = value;
         },
 
-        setErrorAddress(state, action: PayloadAction<{ field: keyof IAddress; error: string | undefined }>) {
-            if (action.payload.field === 'errorAddress')
-                state[action.payload.field] = action.payload.error;
+        setErrorAddress(state, action: PayloadAction<IError>) {
+            const { field, error } = action.payload;
+
+            if (field === 'errorAddress') {
+                state[field] = error;
+                state.isValid = !error?.length;
+            }
         },
 
         clearAddress(state) {
@@ -33,6 +44,7 @@ const addressSlice = createSlice({
             state.entrance = undefined;
             state.floor = undefined;
             state.errorAddress = undefined;
+            state.isValid = false;
         },
     },
 });

@@ -17,6 +17,12 @@ export const ModalWrapper = styled('div')`
         gap: 20px;
         padding: 40px 30px 30px;
     }
+
+    @media (max-width: ${screen.lMobileScreenWidthAbove}){
+        width: 100%;
+        gap: 15px;
+        padding: 40px 20px 20px;
+    }
 `;
 
 export const ProductImage = styled('img')`

@@ -8,12 +8,14 @@ import {
     ProductListTitle,
 } from "@/modules/checkout/components/productlist/style";
 import ShortCard from "@/common/components/productCard/ShortCard";
-import { useState } from "react";
-import ProductsModal from "../../modal/selectedproducts/ProductsModal";
+import { memo, useState } from "react";
+import ProductsModal from "@/modules/checkout/modal/selectedproducts/ProductsModal";
+import { useTranslation } from "react-i18next";
 
-export const ProductList = () => {
+export const ProductList = memo(() => {
     const productList = useSelector((state: RootState) => state.order.products);
     const [isOpen, setIsOpen] = useState(false);
+    const { t } = useTranslation();
 
     const handleOpenModal = () => {
         setIsOpen(true)
@@ -26,7 +28,7 @@ export const ProductList = () => {
     return (
         <>
             <ProductListWrapper>
-                <ProductListTitle>Выбранные товары</ProductListTitle>
+                <ProductListTitle>{t('selectedProducts')}</ProductListTitle>
 
                 <ListProduct>
                     {productList.map(product => (
@@ -42,12 +44,12 @@ export const ProductList = () => {
                 </ListProduct>
             </ProductListWrapper>
 
-            <ProductsModal 
+            <ProductsModal
                 isOpen={isOpen}
                 setOpen={handleCloseModal}
             />
         </>
     )
-};
+});
 
 export default ProductList;

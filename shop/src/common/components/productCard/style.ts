@@ -1,8 +1,8 @@
-import { clampText, disabledButton, hoverActiveMove, resetButton } from "@/common/styles/mixins";
+import { clampText, defaultWrapper, hoverActiveMove, resetButton } from "@/common/styles/mixins";
 import { borders, colors, fonts, screen, shadows, transitions } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
-export const CardWrapper = styled('button')`
+export const CardWrapper = styled('div')`
     position: relative;
     ${resetButton}
     display: flex;
@@ -10,10 +10,8 @@ export const CardWrapper = styled('button')`
     width: 100%;
     height: 407px;
     padding: 15px 20px 25px;
-    background-color: ${colors.white};
-    border-radius: ${borders.defaultRadius};
-    box-shadow: ${shadows.defaultShadow};
     transition: ${transitions.mediumTransition};
+    ${defaultWrapper}
 
     &:hover {
         translate: 0px -5px;
@@ -21,6 +19,9 @@ export const CardWrapper = styled('button')`
 
     
     @media (max-width: ${screen.tabletScreenWidthAbove}) {
+        &:hover{
+            translate: 0px 0px;
+        }
         height: 380px;
         padding: 12px 17px 20px;
     } 
@@ -39,6 +40,7 @@ export const CardWrapper = styled('button')`
 export const ImageWrapper = styled('div')`
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 240px;
     width: 100%;
 
@@ -66,20 +68,12 @@ export const InfoWrapper = styled('div')`
     font-weight: ${fonts.weights.semiBold};
 `;
 
-export const FavoriteButton = styled('button')`
+export const ImageButton = styled('button')`
     ${resetButton}
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    ${hoverActiveMove}
-    z-index: 5;
 `;
 
-export const FavoriteIcon = styled('img')`
-
-`;
-
-export const ProductTitle = styled('span')`
+export const ProductTitle = styled('button')`
+    ${resetButton}
     color: ${colors.darkAngled};
     justify-self: start;
 `;
@@ -121,7 +115,7 @@ export const CartCardWrapper = styled('div') <{ $isDelete: boolean }>`
 
     transition: all 0.3s ease;
     opacity: ${props => props.$isDelete ? '0' : '1'};
-    transform: ${props => props.$isDelete ? 'translateY(-10px)' : 'translateY(0)'};
+    transform: ${props => props.$isDelete ? 'translateY(-30px)' : 'translateY(0)'};
 `;
 
 export const CartProductImg = styled('img')`
@@ -144,19 +138,6 @@ export const CartProductPrice = styled('span')`
 
 export const TotalProductPrice = styled(CartProductPrice)`
     color: ${colors.darkAngled};
-`;
-
-export const QuantityButton = styled('button')`
-    ${resetButton}
-    height: 30px;
-    aspect-ratio: 1;
-    background-color: ${colors.lightAccentColor};
-    border-radius: ${borders.circle};
-    color: ${colors.white};
-    font-size: 20px;
-    ${hoverActiveMove}
-    ${disabledButton}
-
 `;
 
 export const DeleteProductButton = styled('button')`

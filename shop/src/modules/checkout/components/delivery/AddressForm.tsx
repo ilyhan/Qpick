@@ -10,6 +10,7 @@ import { useActions } from "@/store/actions";
 import { IAddress } from "@/store/reducers/order/address";
 import { RootState } from "@/store/store";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 type INewAddress = Omit<IAddress, 'errorAddres'>;
@@ -29,8 +30,10 @@ const AddressForm = () => {
         setErrorAddress
     } = useActions();
 
+    const { t } = useTranslation();
+
     const validateAddress = (val: string) => {
-        setErrorAddress({ field: 'errorAddress', error: !val ? 'Заполните это поле' : undefined });
+        setErrorAddress({ field: 'errorAddress', error: !val ? 'fillField' : undefined });
     };
 
     const validate = useDebounce(validateAddress, 300)
@@ -40,61 +43,48 @@ const AddressForm = () => {
         validate(val);
     }, []);
 
-    //таким образом не работет memo в инпутах
     const handleChange = useCallback((val: string, field: keyof INewAddress) => {
         setFieldAdress({ field: field, value: val });
     }, []);
 
-    // const handleChangeEntrance = useCallback((val: string) => {
-    //     setFieldAdress({ field: 'entrance', value: val });
-    // }, []);
-
-    // const handleChangeFloor = useCallback((val: string) => {
-    //     setFieldAdress({ field: 'floor', value: val });
-    // }, []);
-
-    // const handleChangeComment = useCallback((val: string) => {
-    //     setFieldAdress({ field: 'comment', value: val });
-    // }, []);
-
     return (
         <AddressWrapper>
-            <TitleForm>Адрес доставки</TitleForm>
+            <TitleForm>{t('deliveryAddress')}</TitleForm>
 
             <DeliveryForm>
                 <InputField
                     value={address}
                     onChange={setAddress}
-                    label="Улица, дом*"
+                    label={t('street') + ', ' + t('house')}
                     type="text"
                 />
-                {errorAddress && <span>{errorAddress}</span>}
+                {errorAddress && <span>{t(errorAddress)}</span>}
 
                 <HomeAddress>
                     <InputField
                         value={flat || ''}
                         onChange={(val) => handleChange(val, 'flat')}
-                        label="Квартира"
+                        label={t('flat')}
                         type="text"
                     />
                     <InputField
                         value={entrance || ''}
                         onChange={(val) => handleChange(val, 'entrance')}
-                        label="Подъезд"
+                        label={t('entrance')}
                         type="text"
                     />
                     <InputField
                         value={floor || ''}
                         onChange={(val) => handleChange(val, 'floor')}
-                        label="Этаж"
+                        label={t('floor')}
                         type="text"
                     />
                 </HomeAddress>
 
                 <InputField
                     value={comment || ''}
-                    onChange={(val)=>handleChange(val, 'comment')}
-                    label="Комментарий (например, наличие лифта)"
+                    onChange={(val) => handleChange(val, 'comment')}
+                    label={t('comment')}
                     type="text"
                 />
             </DeliveryForm>

@@ -1,11 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartProduct } from '@/store/reducers/cart/interface';
-
-interface OrderState {
-    type: 'Pickup' | 'Delivery';
-    pickup?: string; //адрес магазина
-    products: CartProduct[];
-};
+import { OrderState, TypeOrder } from '@/store/reducers/order/interface';
 
 const initialState: OrderState = {
     type: 'Pickup',
@@ -16,7 +11,7 @@ const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        setType(state, action: PayloadAction<{ newType: 'Pickup' | 'Delivery' }>) {
+        setType(state, action: PayloadAction<{ newType: TypeOrder }>) {
             state.type = action.payload.newType;
         },
 

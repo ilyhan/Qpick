@@ -61,7 +61,7 @@ const InputField = memo(({
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
-
+    console.log(label)
     return (
         <InputWrapper>
             <InputStyled

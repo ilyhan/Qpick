@@ -3,6 +3,9 @@ import { Product } from "@/store/data/data";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartProduct, ICart, IQuantity } from "@/store/reducers/cart/interface";
 
+const MIN_QUANTITY = 1;
+const MAX_QUANTITY = 9;
+
 const initialState: ICart = {
     products: [],
 };
@@ -26,13 +29,14 @@ const cartSlice = createSlice({
 
         setQuantity(state, action: PayloadAction<IQuantity>) {
             const { id, change } = action.payload;
-
-            state.products.some(item => {
-                if (item.id === id) {
-                    item.quantity += change;
-                    return true;
+            const product = state.products.find(item => item.id === id);
+            
+            if (product) {
+                const newQuantity = product.quantity + change;
+                if (newQuantity >= MIN_QUANTITY && newQuantity <= MAX_QUANTITY) {
+                    product.quantity = newQuantity;
                 }
-            });
+            }
         },
 
         deleteProduct(state, action: PayloadAction<{ id: number }>) {

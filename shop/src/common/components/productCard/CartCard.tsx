@@ -3,7 +3,6 @@ import {
     CartProductImg,
     CartProductPrice,
     CartProductTitle,
-    QuantityButton,
     TotalProductPrice,
     DeleteProductButton,
     DeleteIcon,
@@ -14,9 +13,12 @@ import {
     QuantityProductWrapper
 } from "@/common/components/productCard/style";
 import trash from "@/common/icons/trash.svg";
+import plus from "@/common/icons/plus.svg";
+import minus from "@/common/icons/minus.svg";
 import { memo, useState } from "react";
 import { useActions } from "@/store/actions";
 import { useTranslation } from "react-i18next";
+import QuantityButton from "./components/QuantityButton";
 
 interface CartCardProps {
     id: number;
@@ -36,10 +38,7 @@ const CartCard = memo(({
     const [isDelete, setIsDelete] = useState(false);
     const {t} = useTranslation();
 
-    const {
-        setQuantity,
-        deleteProduct
-    } = useActions();
+    const { deleteProduct } = useActions();
 
     const deleteItem = () => {
         setIsDelete(true);
@@ -68,21 +67,25 @@ const CartCard = memo(({
 
             <TotalProductWrapper>
                 <QuantityProductWrapper>
-                    <QuantityButton
-                        onClick={() => setQuantity({ id: id, change: -1 })}
-                        disabled={quantity === 1}
-                    >
-                        -
-                    </QuantityButton>
+                    <QuantityButton 
+                        id={id}
+                        max={1}
+                        change={-1}
+                        quantity={quantity}
+                        icon={minus}
+                        title="minusQuantity"
+                    />
 
                     <QuantityProduct>{quantity}</QuantityProduct>
 
-                    <QuantityButton
-                        onClick={() => setQuantity({ id: id, change: 1 })}
-                        disabled={quantity === 9}
-                    >
-                        +
-                    </QuantityButton>
+                    <QuantityButton 
+                        id={id}
+                        max={9}
+                        change={1}
+                        quantity={quantity}
+                        icon={plus}
+                        title="plusQuantity"
+                    />
                 </QuantityProductWrapper>
 
                 <TotalProductPrice>

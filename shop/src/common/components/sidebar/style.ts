@@ -1,4 +1,4 @@
-import { clampText, disabledButton, hoverActiveMove } from "@/common/styles/mixins";
+import { clampText, defaultWrapper, disabledColorButton, hoverActiveMove } from "@/common/styles/mixins";
 import { borders, colors, fonts, screen, shadows } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
@@ -8,9 +8,7 @@ export const SideBarWrapper = styled('div')`
     width: 100%;
     height: 115px;
     padding: 21px 16px 0px 21px;
-    background-color: ${colors.white};
-    border-radius: ${borders.defaultRadius};
-    box-shadow: ${shadows.defaultShadow};
+    ${defaultWrapper}
 `;
 
 
@@ -52,5 +50,5 @@ export const PaymentButton = styled("button")`
     border-radius: ${borders.smallRadius};
     box-shadow: ${shadows.defaultShadow};
     ${hoverActiveMove}
-    ${disabledButton}
+    ${disabledColorButton}
 `;

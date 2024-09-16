@@ -1,34 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface IUserData {
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    errors: IErrors;
-};
-
-interface IErrors {
-    firstName?: string;
-    lastName?: string;
-    phoneNumber?: string;
-};
+import { IUserData, SetErrorUser, SetFieldUser } from '@/store/reducers/order/interface';
 
 const initialState: IUserData = {
     firstName: '',
     lastName: '',
     phoneNumber: '+7',
-    errors: {},
+    errors: {
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+    },
 };
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setField(state, action: PayloadAction<{ field: keyof IUserData; value: string }>) {
+        setField(state, action: PayloadAction<SetFieldUser>) {
             state[action.payload.field] = action.payload.value;
         },
 
-        setErrors(state, action: PayloadAction<{ field: keyof IErrors; error: string | undefined }>) {
+        setErrors(state, action: PayloadAction<SetErrorUser>) {
             state.errors[action.payload.field] = action.payload.error;
         },
 
@@ -36,7 +28,11 @@ const userSlice = createSlice({
             state.firstName = '';
             state.lastName = '';
             state.phoneNumber = '+7';
-            state.errors = {};
+            state.errors = {
+                firstName: '',
+                lastName: '',
+                phoneNumber: '',
+            };
         },
     },
 });

@@ -26,7 +26,6 @@ const ModalSection = styled("section") <{ $zindex: number }>`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* padding-block: 7rem; */
     position: fixed;
     top: 0;
     left: 0;
@@ -38,9 +37,7 @@ const ModalSection = styled("section") <{ $zindex: number }>`
 
     @media (max-width: ${screen.lMobileScreenWidthAbove}){
         align-items: end;
-        /* padding-block: 0px; */
     }
-    /* overflow: auto; */
 `;
 
 const ModalContent = styled("div") <{ $visible: boolean }>`
@@ -50,10 +47,10 @@ const ModalContent = styled("div") <{ $visible: boolean }>`
     box-shadow: ${shadows.defaultShadow};
     height: fit-content;
     width: fit-content;
-    /* margin: auto 0; */
     transition: ${(props) => (props.$visible ? transitions.mediumTransition : transitions.fastTransition)};
     opacity: ${(props) => (props.$visible ? '1' : "0")};
     transform: ${(props) => (props.$visible ? "scale(1)" : "scale(0.5)")};
+    overflow: hidden;
 
     @media (max-width: ${screen.lMobileScreenWidthAbove}){
         opacity: 1;
@@ -72,6 +69,30 @@ const CloseButton = styled('button')`
     height: 23px;
     width: 23px;
     ${hoverActive}
+
+    @media (max-width: ${screen.lMobileScreenWidthAbove}){
+        display: none;
+    }
+`;
+
+const CloseSwipe = styled('div')`
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+
+    @media (min-width: ${screen.lMobileScreenWidthAbove}){
+        display: none;
+    }
+`;
+
+const SwipeLine = styled('div')`
+    height: 4px;
+    width: 25%;
+    background-color: ${colors.lightGray};
+    margin: 15px auto;
+    border-radius: ${borders.defaultRadius};
 `;
 
 const Modal = ({
@@ -115,7 +136,7 @@ const Modal = ({
     const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
         const touchEnd = e.changedTouches[0].clientY;
 
-        if (touchEnd - touchStart > 50) {
+        if (touchEnd - touchStart > 100) {
             closModal();
         }
     };
@@ -129,8 +150,6 @@ const Modal = ({
             onMouseDown={closModal}
             tabIndex={-1}
             $zindex={zIndex || 1}
-            onTouchStart={handleTouschStart}
-            onTouchEnd={handleTouchEnd}
             style={styleWrapper}
         >
             <ModalContent
@@ -139,13 +158,23 @@ const Modal = ({
                 style={styleContent}
             >
                 {closeIcon && (
-                    <CloseButton
-                        title={t('close')}
-                        onClick={closModal}
-                    >
-                        <img src={close} alt={t('close')} />
-                    </CloseButton>
+                    <>
+                        <CloseButton
+                            title={t('close')}
+                            onClick={closModal}
+                        >
+                            <img src={close} alt={t('close')} />
+                        </CloseButton>
+
+                        <CloseSwipe 
+                            onTouchStart={handleTouschStart}
+                            onTouchEnd={handleTouchEnd}
+                        >
+                            <SwipeLine/>
+                        </CloseSwipe>
+                    </>
                 )}
+
                 {children}
             </ModalContent>
         </ModalSection>

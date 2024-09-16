@@ -1,5 +1,5 @@
 import Modal from "@/common/ui/modal";
-import { 
+import {
     ModalWrapper,
     ModalProductsList,
     ModalProductItem,
@@ -26,11 +26,17 @@ const ProductsModal = ({ isOpen, setOpen }: ProductsModalProps) => {
         >
             <ModalWrapper>
                 <ModalProductsList>
-                    {productsList.map(product=>(
-                        <ModalProductItem>
-                            <ModalProductImg src={product.img} alt={product.title}/>
-                                <ModalProductTitle>{product.title}</ModalProductTitle>
-                                <ModalProductQuantity>{product.quantity} шт.</ModalProductQuantity>
+                    {productsList.map(product => (
+                        <ModalProductItem key={product.id}>
+                            <ModalProductImg src={product.img} alt={product.title} />
+                            
+                            <ModalProductTitle>
+                                {product.title}
+                            </ModalProductTitle>
+
+                            <ModalProductQuantity>
+                                {product.quantity} шт.
+                            </ModalProductQuantity>
                         </ModalProductItem>
                     ))}
                 </ModalProductsList>

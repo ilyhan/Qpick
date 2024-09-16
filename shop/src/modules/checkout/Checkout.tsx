@@ -12,13 +12,15 @@ import AddressForm from "@/modules/checkout/components/delivery/AddressForm";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import SideBar from "@/modules/checkout/components/SideBar";
+import { useTranslation } from "react-i18next";
 
 const Checkout = () => {
     const selectedTab = useSelector((state: RootState) => state.order.type);
+    const {t} = useTranslation();
 
     return (
         <CheckoutWrapper>
-            <CheckoutTitle>Оформление заказа</CheckoutTitle>
+            <CheckoutTitle>{t('orderReg')}</CheckoutTitle>
 
             <CheckoutMain>
                 <CheckoutInfo>

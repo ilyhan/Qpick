@@ -9,22 +9,12 @@ import { RootState } from "@/store/store";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import TotalSideBar from "@/common/components/sidebar/TotalSideBar";
-import ModalConfirm from "@/common/ui/ModalConfirm";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useActions } from "@/store/actions";
+import ContinueShop from "@/modules/cart/modal/ContinueShop";
 
 const Cart = () => {
     const cart = useSelector((state: RootState) => state.cart.products);
-    const order = useSelector((state: RootState) => state.order.products);
-
-    const { 
-        setProduct,
-        clearForm,
-        clearFormUser,
-        clearAddress
-    } = useActions();
-
+    const { setProduct } = useActions();
     const { t } = useTranslation();
 
     const TotalPrice = () => {
@@ -32,22 +22,7 @@ const Cart = () => {
     };
 
     const handleCheckout = () => {
-        setProduct({products: cart});
-    };
-
-    const [isOpen, setIsOpen] = useState<boolean>(!!order.length);
-    const navigate = useNavigate();
-
-    const onOk = () => {
-        setIsOpen(false);
-        navigate('/qpick/checkout');
-    };
-
-    const onCancel = () => {
-        setIsOpen(false);
-        clearForm();
-        clearFormUser();
-        clearAddress();
+        setProduct({ products: cart });
     };
 
     return (
@@ -69,7 +44,7 @@ const Cart = () => {
                     {cart.length
                         ? <TotalSideBar
                             price={TotalPrice()}
-                            text="Перейти к оформлению"
+                            text={t('registration')}
                             link="/qpick/checkout"
                             onClick={handleCheckout}
                         />
@@ -77,14 +52,7 @@ const Cart = () => {
                 </CartOrdersWrapper>
             </CartWtapper>
 
-            <ModalConfirm
-                isOpen={isOpen}
-                headerText="У вас есть незавершенный заказ Хотите продолжить?"
-                okText="Да"
-                cancelText="Нет"
-                onOk={onOk}
-                onCancel={onCancel}
-            />
+            <ContinueShop />
         </>
     );
 };

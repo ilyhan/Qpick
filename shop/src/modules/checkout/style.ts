@@ -1,5 +1,5 @@
 import { clampText } from "@/common/styles/mixins";
-import { colors, fonts } from "@/common/styles/styleConstants";
+import { colors, fonts, screen } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const CheckoutWrapper = styled('section')`
@@ -18,9 +18,16 @@ export const CheckoutMain = styled('div')`
     grid-template-columns: auto 350px;
     gap: 50px;
     width: 100%;
+
+    @media (max-width: ${screen.tabletScreenWidth}) {
+        display: grid;
+        grid-template-columns: minmax(250px, 600px);
+        justify-content: center;
+        gap: 20px;
+    } 
 `;
 
-export const CheckoutTitle = styled('h1')`
+export const CheckoutTitle = styled('h2')`
     ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     color: ${colors.darkAngled};
     font-weight: ${fonts.weights.semiBold};

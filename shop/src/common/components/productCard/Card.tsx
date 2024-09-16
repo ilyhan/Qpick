@@ -9,14 +9,13 @@ import {
     RatingStar,
     ProductAction,
     ImageWrapper,
-    FavoriteButton,
-    FavoriteIcon,
+    ImageButton
 } from "@/common/components/productCard/style";
 import star from "@/common/icons/star.svg";
 import { Product } from "@/store/data/data";
 import { useActions } from "@/store/actions";
 import { useTranslation } from "react-i18next";
-import heartActive from "@/common/icons/heartActive.svg";
+import Favorite from "@/common/components/productCard/components/Favorite";
 
 interface CardProps {
     cardInfo: Product;
@@ -27,9 +26,8 @@ interface CardProps {
 const Card = ({ cardInfo, click, withHeart }: CardProps) => {
     const {
         addCartProduct,
-        deleteFromWishlist
     } = useActions();
-
+    
     const { t } = useTranslation();
 
     const setItemCart = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -37,27 +35,20 @@ const Card = ({ cardInfo, click, withHeart }: CardProps) => {
         addCartProduct(cardInfo);
     };
 
-    const handleSetFavorite = () => {
-        deleteFromWishlist({id: cardInfo.id})
-    };
-
     return (
-        <CardWrapper onClick={click}>
+        <CardWrapper>
             {(withHeart && cardInfo?.isFavorite) &&
-                <FavoriteButton 
-                    onClick={handleSetFavorite}
-                    title="Удалить из избранного"
-                >
-                    <FavoriteIcon src={heartActive} />
-                </FavoriteButton>
+                <Favorite id={cardInfo.id} />
             }
 
             <ImageWrapper>
-                <ProductImage src={cardInfo.img} alt={t('product')} />
+                <ImageButton onClick={click}>
+                    <ProductImage src={cardInfo.img} alt={t('product')} />
+                </ImageButton>
             </ImageWrapper>
 
             <InfoWrapper>
-                <ProductTitle>
+                <ProductTitle onClick={click} title={t('infoProduct')}>
                     {cardInfo.title}
                 </ProductTitle>
 

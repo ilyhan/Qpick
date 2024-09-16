@@ -1,19 +1,8 @@
 import { FC } from 'react';
 import styled from "styled-components";
-import Modal from '@/common/ui/modal';
-import { clampText, resetButton } from '@/common/styles/mixins';
-import { colors, fonts } from '@/common/styles/styleConstants';
-
-export interface ModalProps {
-    isOpen?: boolean;
-    onClose?: () => void;
-    closeIcon?: boolean;
-    title?: string;
-    children?: React.ReactNode;
-    zIndex?: number;
-    styleContent?: React.CSSProperties;
-    styleWrapper?: React.CSSProperties;
-};
+import Modal, { ModalProps } from '@/common/ui/modal';
+import { clampText, hoverActiveBackground, resetButton } from '@/common/styles/mixins';
+import { borders, colors, fonts } from '@/common/styles/styleConstants';
 
 interface ModalConfirmProps extends ModalProps {
     onOk?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -36,6 +25,7 @@ const ModalWrapper = styled('div')`
     max-width: 360px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 `;
 
 const ModalHeader = styled('div')`  
@@ -50,14 +40,10 @@ const OkButton = styled('button')`
     width: 180px;
     padding-block: 15px;
     text-align: center;
-    color: ${colors.black};
+    ${hoverActiveBackground}
 `;
 
-const CancelButton = styled('button')`
-    ${resetButton}
-    width: 180px;
-    padding-block: 15px;
-    text-align: center;
+const CancelButton = styled(OkButton)`
     color: ${colors.deleteColor};
 `;
 
@@ -67,7 +53,7 @@ const ButtonInner = styled('div') <{ hasbuttons: boolean }>`
     align-items: center;
 `;
 
-const Header = styled('h1')`
+const Header = styled('h2')`
     text-align: center;
     ${clampText(fonts.sizes.mainMobile, fonts.sizes.titleMobile)};
     font-weight: ${fonts.weights.medium};
@@ -95,6 +81,7 @@ const ModalContent: FC<ModalContentProps> = ({
             <ModalHeader>
                 <Header>{headerText}</Header>
             </ModalHeader>
+
             {(!!okText || !!cancelText) && (
                 <ButtonInner hasbuttons={!!okText && !!cancelText}>
                     {!!okText && (
@@ -114,7 +101,10 @@ const ModalContent: FC<ModalContentProps> = ({
 };
 
 const ModalConfirm = (props: ModalConfirmProps) => (
-    <Modal {...props} styleWrapper={{alignItems: 'center'}}>
+    <Modal {...props}
+        styleWrapper={{ alignItems: 'center' }}
+        styleContent={{ borderRadius: borders.defaultRadius}}
+    >
         <ModalContent
             onOk={props.onOk}
             onCancel={props.onCancel}

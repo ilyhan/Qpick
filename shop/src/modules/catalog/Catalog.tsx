@@ -1,27 +1,19 @@
 import {
     CatalogWrapper,
-    TitleChapter,
-    ProductsWrapper,
 } from "@/modules/catalog/style";
-import Card from "@/common/components/productCard/Card";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { useCallback, useEffect, useState } from "react";
 import { Product } from "@/store/data/data";
 import ProductModal from "@/modules/catalog/modal/ProductModal";
+import RenderCards from "./render/RenderCards";
 
 const Catalog = () => {
-    const productes = useSelector((state: RootState) => state.products.products);
-    const { t } = useTranslation();
-
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const openModal = (product: Product) => {
+    const openModal = useCallback((product: Product) => {
         setSelectedProduct(product);
         setIsModalOpen(true);
-    };
+    }, []);
 
     const closeModal = () => {
         setIsModalOpen(false);
@@ -42,22 +34,7 @@ const Catalog = () => {
                 setOpen={closeModal}
                 product={selectedProduct}
             />}
-
-            {productes.map(headfones => (
-                <>
-                    <TitleChapter>{t(headfones.title)}</TitleChapter>
-
-                    <ProductsWrapper>
-                        {headfones.productes.map(headfone => (
-                            <Card
-                                key={headfone.id}
-                                cardInfo={headfone}
-                                click={() => openModal(headfone)}
-                            />
-                        ))}
-                    </ProductsWrapper>
-                </>
-            ))}
+            <RenderCards openModal={openModal}/>
         </CatalogWrapper>
     );
 };
