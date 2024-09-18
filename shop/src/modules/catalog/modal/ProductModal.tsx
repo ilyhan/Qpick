@@ -73,7 +73,7 @@ const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
                             disabled={inWishlist}
                             title={t('addFavorite')}
                         >
-                            {inWishlist ? t('addWishlist') : t('inWishlist')}
+                            {!inWishlist ? t('addWishlist') : t('inWishlist')}
                         </ModalButton>
                     </ActionsWrapper>
                 </PoductInfoWrapper>

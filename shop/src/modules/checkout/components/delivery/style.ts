@@ -9,6 +9,7 @@ export const AddressWrapper = styled('div')`
 export const TitleForm = styled('h3')`
     ${clampText(fonts.sizes.titleMobile, fonts.sizes.title)}
     font-weight: ${fonts.weights.semiBold};
+    margin-bottom: 10px;
 `;
 
 export const DeliveryForm = styled('form')`

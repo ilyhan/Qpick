@@ -1,7 +1,8 @@
-import { 
-    ConnectWrapper, 
-    MessengerBtn, 
-    MessengerIcon 
+import {
+    ConnectList,
+    MessengerLink,
+    MessengerIcon,
+    Navitem
 } from "@/common/components/footer/components/style";
 import { useTranslation } from "react-i18next";
 import vk from "@/common/icons/VK.svg";
@@ -12,19 +13,25 @@ const ConnectMessenger = () => {
     const { t } = useTranslation();
 
     return (
-        <ConnectWrapper>
-            <MessengerBtn>
-                <MessengerIcon src={vk} alt={t('vk')} />
-            </MessengerBtn>
+        <ConnectList>
+            <Navitem>
+                <MessengerLink to='https://vk.com/neoflex_ru'>
+                    <MessengerIcon src={vk} alt={t('vk')} />
+                </MessengerLink>
+            </Navitem>
 
-            <MessengerBtn>
-                <MessengerIcon src={telegram} alt={t('telegram')} />
-            </MessengerBtn>
+            <Navitem>
+                <MessengerLink to='https://t.me/neoflexcareers'>
+                    <MessengerIcon src={telegram} alt={t('telegram')} />
+                </MessengerLink>
+            </Navitem>
 
-            <MessengerBtn>
-                <MessengerIcon src={whatsapp} alt={t('whatsApp')} />
-            </MessengerBtn>
-        </ConnectWrapper>
+            <Navitem>
+                <MessengerLink to='https://t.me/neoflexcareers'>
+                    <MessengerIcon src={whatsapp} alt={t('whatsApp')} />
+                </MessengerLink>
+            </Navitem>
+        </ConnectList>
     )
 };
 export default ConnectMessenger;

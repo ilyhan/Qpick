@@ -1,5 +1,6 @@
-import { clampText, hoverActive, resetButton } from "@/common/styles/mixins";
+import { clampText, hoverActive, hoverAnimation, resetButton } from "@/common/styles/mixins";
 import { colors, fonts, screen } from "@/common/styles/styleConstants";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NavListWrapper = styled('ul')`
@@ -8,9 +9,16 @@ export const NavListWrapper = styled('ul')`
     } 
 `;
 
+export const Navitem = styled('li')`
+`;
+
 export const NavItem = styled('li')`
     ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
     margin-bottom: 10px;
+`;
+
+export const StyledLink = styled(Link)`
+    ${hoverAnimation}
 `;
 
 export const TermsUseWrapper = styled('div')`
@@ -41,7 +49,7 @@ export const Language = styled('button') <{ $isSelected: boolean }>`
     ${hoverActive}
 `;
 
-export const ConnectWrapper = styled('div')`
+export const ConnectList = styled('ul')`
     display: flex;
     column-gap: 18px;
 
@@ -55,7 +63,7 @@ export const MessengerIcon = styled('img')`
     height: 30px;
 `;
 
-export const MessengerBtn = styled('button')`
+export const MessengerLink = styled(Link)`
     ${resetButton}
     ${hoverActive}
     height: fit-content;

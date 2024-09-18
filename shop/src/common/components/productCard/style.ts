@@ -56,6 +56,7 @@ export const ImageWrapper = styled('div')`
 export const ProductImage = styled('img')`
     margin: 0 auto;
     max-height: 100%;
+    object-fit: contain;
 `;
 
 export const InfoWrapper = styled('div')`
@@ -69,6 +70,7 @@ export const InfoWrapper = styled('div')`
 `;
 
 export const ImageButton = styled('button')`
+    height: inherit;
     ${resetButton}
 `;
 
@@ -78,9 +80,18 @@ export const ProductTitle = styled('button')`
     justify-self: start;
 `;
 
-export const ProductPrice = styled('span')`
+export const ProductPriceWrapper = styled('div')`
+    position: relative;
     color: ${colors.accentColor};
     justify-self: end;
+`;
+
+export const OldPrice = styled('span')`
+    position: absolute;
+    right: 0px;
+    text-decoration: line-through;
+    color: ${colors.lightAccentColor};
+    font-size: ${fonts.sizes.extraSmall}px;
 `;
 
 export const ProductRatingWrapper = styled('div')`

@@ -46,7 +46,7 @@ export const hoverActive = css`
 
   @media (hover: none) {
     &:active {
-      opacity: 0.5;
+      background-color: ${colors.lightGray};
     }
   }
 `;
@@ -58,6 +58,12 @@ export const hoverActiveBackground = css`
       background-color: ${colors.backgroundGray};
     }
 
+    &:active {
+      background-color: ${colors.lightGray};
+    }
+  }
+
+  @media (hover: none) {
     &:active {
       background-color: ${colors.lightGray};
     }
@@ -79,7 +85,41 @@ export const hoverActiveMove = css`
 
   @media (hover: none) {
     &:active {
-      opacity: 0.5;
+      opacity: 0.55;
+      translate: 0px 1px;
+    }
+  }
+`;
+
+export const hoverAnimation = css`
+  @media (hover: hover) {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      border-radius: 4px;
+      background-color: ${colors.black};
+      bottom: 0;
+      left: 0;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform .3s ease-in-out;
+    }
+
+    &:hover::before {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      opacity: 0.6;
     }
   }
 `;

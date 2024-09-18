@@ -1,9 +1,11 @@
 import TotalSideBar from "@/common/components/sidebar/TotalSideBar";
 import { useActions } from "@/store/actions";
 import { RootState } from "@/store/store";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import CheckoutEnd from "@/modules/checkout/modal/CheckoutEnd";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = memo(() => {
     const {
@@ -13,12 +15,17 @@ const SideBar = memo(() => {
     } = useSelector((state: RootState) => state.order);
     const errorsUser = useSelector((state: RootState) => state.user.errors);
     const errorsAddress = useSelector((state: RootState) => state.address.isValid);
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const navigate = useNavigate();
+
     const { t } = useTranslation();
 
     const TotalPrice = () => {
         return products.reduce((total, item) =>
             total + item.price * item.quantity,
-            type === 'Pickup' ? 1299 : 0
+            type === 'Pickup' ? 0 : 1299
         );
     };
 
@@ -30,6 +37,12 @@ const SideBar = memo(() => {
     } = useActions();
 
     const handleBuyAll = () => {
+        setIsOpen(true);
+    };
+
+    const onOk = () => {
+        setIsOpen(false);
+        navigate('/qpick/catalog');
         clearCart();
         clearForm();
         clearFormUser();
@@ -50,13 +63,18 @@ const SideBar = memo(() => {
     };
 
     return (
-        <TotalSideBar
-            price={TotalPrice()}
-            text={t('buyAll')}
-            link="/qpick/catalog"
-            onClick={handleBuyAll}
-            disabled={!isValid()}
-        />
+        <>
+            <TotalSideBar
+                price={TotalPrice()}
+                text={t('buyAll')}
+                onClick={handleBuyAll}
+                disabled={!isValid()}
+            />
+            <CheckoutEnd
+                isOpen={isOpen}
+                onOk={onOk}
+            />
+        </>
     )
 });
 

@@ -55,10 +55,10 @@ const AddressForm = () => {
                 <InputField
                     value={address}
                     onChange={setAddress}
-                    label={t('street') + ', ' + t('house')}
+                    label={t('street') + ', ' + t('house') + '*'}
                     type="text"
+                    error={errorAddress && t(errorAddress)}
                 />
-                {errorAddress && <span>{t(errorAddress)}</span>}
 
                 <HomeAddress>
                     <InputField

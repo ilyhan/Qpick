@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styled from "styled-components";
 import Modal, { ModalProps } from '@/common/ui/modal';
 import { clampText, hoverActiveBackground, resetButton } from '@/common/styles/mixins';
-import { borders, colors, fonts } from '@/common/styles/styleConstants';
+import { borders, colors, fonts, screen } from '@/common/styles/styleConstants';
 
 interface ModalConfirmProps extends ModalProps {
     onOk?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -26,6 +26,10 @@ const ModalWrapper = styled('div')`
     display: flex;
     flex-direction: column;
     overflow: hidden;
+
+    @media (max-width: ${screen.lMobileScreenWidthAbove}){
+        width: 300px;
+    }
 `;
 
 const ModalHeader = styled('div')`  
@@ -37,7 +41,7 @@ const ModalHeader = styled('div')`
 
 const OkButton = styled('button')`
     ${resetButton}
-    width: 180px;
+    width: 100%;
     padding-block: 15px;
     text-align: center;
     ${hoverActiveBackground}
@@ -47,10 +51,11 @@ const CancelButton = styled(OkButton)`
     color: ${colors.deleteColor};
 `;
 
-const ButtonInner = styled('div') <{ hasbuttons: boolean }>`
+const ButtonInner = styled('div') <{ $hasbuttons: boolean }>`
     display: flex;
-    justify-content: ${(props) => (props.hasbuttons ? 'space-between' : 'center')};
+    justify-content: ${(props) => (props.$hasbuttons ? 'space-between' : 'center')};
     align-items: center;
+    border-top: 1px solid ${colors.backgroundGray};
 `;
 
 const Header = styled('h2')`
@@ -83,7 +88,7 @@ const ModalContent: FC<ModalContentProps> = ({
             </ModalHeader>
 
             {(!!okText || !!cancelText) && (
-                <ButtonInner hasbuttons={!!okText && !!cancelText}>
+                <ButtonInner $hasbuttons={!!okText && !!cancelText}>
                     {!!okText && (
                         <OkButton key='submit' onClick={handleOk}>
                             {okText}

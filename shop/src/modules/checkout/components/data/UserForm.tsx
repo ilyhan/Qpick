@@ -73,16 +73,16 @@ const UserForm = memo(() => {
                     onChange={setFirstName}
                     label={t('name')}
                     type="text"
+                    error={errors.firstName && t(errors.firstName)}
                 />
-                {errors.firstName && <p>{t(errors.firstName)}</p>}
 
                 <InputField
                     value={lastName}
                     onChange={setLastName}
                     label={t('last')}
                     type="text"
+                    error={errors.lastName && t(errors.lastName)}
                 />
-                {errors.lastName && <p>{t(errors.lastName)}</p>}
 
                 <InputField
                     value={phoneNumber}
@@ -90,8 +90,8 @@ const UserForm = memo(() => {
                     label={t('phone')}
                     type="tel"
                     maxLength={12}
+                    error={errors.phoneNumber && t(errors.phoneNumber)}
                 />
-                {errors.phoneNumber && <p>{t(errors.phoneNumber)}</p>}
             </FormUser>
         </UserFormWrapper>
     );

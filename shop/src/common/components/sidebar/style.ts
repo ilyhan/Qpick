@@ -49,6 +49,7 @@ export const PaymentButton = styled("button")`
     background-color: ${colors.richBlack};
     border-radius: ${borders.smallRadius};
     box-shadow: ${shadows.defaultShadow};
+    border: none;
     ${hoverActiveMove}
     ${disabledColorButton}
 `;

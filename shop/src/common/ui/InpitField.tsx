@@ -9,12 +9,13 @@ interface InputFieldProps {
     required?: boolean;
     type?: string;
     maxLength?: number;
+    error?: string;
     onChange: (value: string)=>void;
 };
 
 const InputWrapper = styled.div`
   position: relative;
-  margin-top: 10px;
+  margin-bottom: 15px;
 `;
 
 const InputStyled = styled('input')`
@@ -50,18 +51,27 @@ const LabelStyled = styled('label')`
   transition: ${transitions.fastTransition};
 `;
 
+const ErrorWrapper = styled('p')`
+  position: absolute;
+  left: 10px;
+  bottom: -20px;
+  color: ${colors.red};
+  font-size: ${fonts.sizes.extraSmall}px;
+`;
+
 const InputField = memo(({
     label,
     value,
     type = "text",
     required = true,
     maxLength,
+    error,
     onChange,
 }: InputFieldProps) => {
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
-    console.log(label)
+
     return (
         <InputWrapper>
             <InputStyled
@@ -72,6 +82,8 @@ const InputField = memo(({
                 maxLength={maxLength}
             />
             <LabelStyled>{label}</LabelStyled>
+
+            {error && <ErrorWrapper>{error}</ErrorWrapper>}
         </InputWrapper>
     );
 });

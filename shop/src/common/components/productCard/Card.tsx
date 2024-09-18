@@ -3,13 +3,14 @@ import {
     ProductImage,
     InfoWrapper,
     ProductTitle,
-    ProductPrice,
+    ProductPriceWrapper,
     ProductRatingWrapper,
     ProductRating,
     RatingStar,
     ProductAction,
     ImageWrapper,
-    ImageButton
+    ImageButton,
+    OldPrice,
 } from "@/common/components/productCard/style";
 import star from "@/common/icons/star.svg";
 import { Product } from "@/store/data/data";
@@ -27,7 +28,7 @@ const Card = ({ cardInfo, click, withHeart }: CardProps) => {
     const {
         addCartProduct,
     } = useActions();
-    
+
     const { t } = useTranslation();
 
     const setItemCart = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,9 +53,13 @@ const Card = ({ cardInfo, click, withHeart }: CardProps) => {
                     {cardInfo.title}
                 </ProductTitle>
 
-                <ProductPrice>
-                    {cardInfo.price} ₽
-                </ProductPrice>
+                <ProductPriceWrapper>
+                    {cardInfo.price} ₽ 
+                    <br/>
+                    {cardInfo.oldPrice && <OldPrice>
+                        {cardInfo.oldPrice} ₽
+                    </OldPrice>}
+                </ProductPriceWrapper>
 
                 <ProductRatingWrapper>
                     <RatingStar src={star} alt={t('rating')} />

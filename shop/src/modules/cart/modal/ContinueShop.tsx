@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 const ContinueShop = () => {
     const order = useSelector((state: RootState) => state.order.products);
-    const [isOpen, setIsOpen] = useState<boolean>(!!order.length);
+    const [isOpen, setIsOpen] = useState<boolean>(!!order?.length);
     const navigate = useNavigate();
     const { t } = useTranslation();
 

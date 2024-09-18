@@ -1,5 +1,8 @@
-import { Link } from "react-router-dom";
-import { NavItem, NavListWrapper } from "@/common/components/footer/components/style";
+import { 
+    NavItem, 
+    NavListWrapper, 
+    StyledLink
+} from "@/common/components/footer/components/style";
 import { useTranslation } from "react-i18next";
 
 const NavList = () => {
@@ -8,21 +11,21 @@ const NavList = () => {
     return (
         <NavListWrapper>
             <NavItem>
-                <Link to='/qpick/wishlist'>
+                <StyledLink to='/qpick/wishlist'>
                     {t('wishlist')}
-                </Link>
+                </StyledLink>
             </NavItem>
 
             <NavItem>
-                <Link to='/qpick/cart'>
+                <StyledLink to='/qpick/cart'>
                     {t('cart')}
-                </Link>
+                </StyledLink>
             </NavItem>
 
             <NavItem>
-                <Link to='/qpick/contact'>
+                <StyledLink to='/qpick/contact'>
                     {t('contact')}
-                </Link>
+                </StyledLink>
             </NavItem>
         </NavListWrapper>
     )

@@ -17,7 +17,7 @@ export const resources = {
             whatsApp: 'whatsApp',
             product: 'Product',
             rating: 'Rating of product',
-            deleteIcon: 'Delete icon',
+            deleteIcon: 'Delete',
             infoProduct: 'Product information',
             minusQuantity: 'Reduce quantity',
             plusQuantity: 'Increase quantity',
@@ -56,6 +56,8 @@ export const resources = {
             orderReg: 'Order registration',
             addFavorite: 'Add to the wishlist',
             addCart: 'Add to сart',
+            succes: 'The order was placed successfully',
+            ok: 'Perfectly',
         },
     },
     ru: {
@@ -115,6 +117,8 @@ export const resources = {
             orderReg: 'Оформление заказа',
             addFavorite: 'Добавить в избранное',
             addCart: 'Добавить в корзину',
+            succes: 'Заказ офрмлен успешно',
+            ok: 'Супер',
         },
     },
 };

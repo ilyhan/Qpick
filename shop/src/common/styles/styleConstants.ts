@@ -13,10 +13,13 @@ export const colors = {
     darkAngled: "rgba(28, 28, 39, 1)",
     blackTransparent: "rgba(0, 0, 0, 0.4)",
 
+    //red
+    red: "rgba(255, 0, 0, 1)",
+    deleteColor: "rgba(223, 100, 100, 1)",
+
     //Accent
     accentColor: "rgba(255, 165, 66, 1)",
     lightAccentColor: "rgba(255, 206, 127, 1)",
-    deleteColor: "rgba(223, 100, 100, 1)",
 };
 
 export const transitions = {
@@ -56,6 +59,7 @@ export const fonts = {
         mainMobile: 15,
         small: 15,
         smallMobile: 12,
+        extraSmall: 13,
     },
 
     // weight
