@@ -25,7 +25,7 @@ const Handover = () => {
 
             {selectedTab === 'Delivery' && <ObtainingInfo>
                 <InfoItem>{t('courier')}</InfoItem>
-                <InfoItem>{t('todayLater')} - 1299 ₽</InfoItem>
+                <InfoItem>{t('todayLater')} - 1 299 ₽</InfoItem>
             </ObtainingInfo>}
         </HandoverWrapper>
     );

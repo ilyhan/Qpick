@@ -19,6 +19,7 @@ import { memo, useState } from "react";
 import { useActions } from "@/store/actions";
 import { useTranslation } from "react-i18next";
 import QuantityButton from "./components/QuantityButton";
+import { formatPrice } from "@/common/helpers/formatPrice";
 
 interface CartCardProps {
     id: number;
@@ -56,7 +57,7 @@ const CartCard = memo(({
                     </CartProductTitle>
 
                     <CartProductPrice>
-                        {price} ₽
+                        {formatPrice(price)} ₽
                     </CartProductPrice>
                 </CartProductInfo>
 
@@ -89,7 +90,7 @@ const CartCard = memo(({
                 </QuantityProductWrapper>
 
                 <TotalProductPrice>
-                    {price * quantity} ₽
+                    {formatPrice(price * quantity)} ₽
                 </TotalProductPrice>
             </TotalProductWrapper>
         </CartCardWrapper>

@@ -51,21 +51,21 @@ export const hoverActive = css`
   }
 `;
 
-export const hoverActiveBackground = css`
+export const hoverActiveBackground = (hoverColor?: string, activeColor?: string) => css`
   @media (hover: hover) {
     transition: ${transitions.fastTransition};
     &:hover {
-      background-color: ${colors.backgroundGray};
+      background-color: ${hoverColor ? hoverColor : colors.backgroundGray};
     }
 
     &:active {
-      background-color: ${colors.lightGray};
+      background-color: ${activeColor ? activeColor : colors.lightGray};
     }
   }
 
   @media (hover: none) {
     &:active {
-      background-color: ${colors.lightGray};
+      background-color: ${activeColor ? activeColor : colors.lightGray};
     }
   }
 `;

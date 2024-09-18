@@ -44,7 +44,7 @@ const OkButton = styled('button')`
     width: 100%;
     padding-block: 15px;
     text-align: center;
-    ${hoverActiveBackground}
+    ${hoverActiveBackground()}
 `;
 
 const CancelButton = styled(OkButton)`

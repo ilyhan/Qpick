@@ -5,6 +5,7 @@ import {
     SideBarWrapper,
     TotalResult
 } from "@/common/components/sidebar/style";
+import { formatPrice } from "@/common/helpers/formatPrice";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -32,7 +33,7 @@ const TotalSideBar = ({ price, text, link, disabled, onClick }: TotalSideBarProp
             <SideBarWrapper>
                 <SideBar>
                     <TotalResult>{t('total')}</TotalResult>
-                    <TotalResult>₽ {price}</TotalResult>
+                    <TotalResult>₽ {formatPrice(price)}</TotalResult>
                 </SideBar>
 
                 <PaymentButton onClick={handleClick} disabled={disabled}>

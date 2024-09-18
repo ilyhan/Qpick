@@ -15,6 +15,6 @@ export const TitleForm = styled('h3')`
 export const FormUser = styled('form')`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 7px;
     width: 100%;
 `;

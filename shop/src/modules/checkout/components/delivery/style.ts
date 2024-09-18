@@ -15,7 +15,7 @@ export const TitleForm = styled('h3')`
 export const DeliveryForm = styled('form')`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 7px;
     width: 100%;
 `;
 
@@ -26,6 +26,6 @@ export const HomeAddress = styled('div')`
 
     @media (max-width: ${screen.tabletScreenWidth}) {
         flex-direction: column;
-        gap: 20px;
+        gap: 7px;
     } 
 `;

@@ -17,6 +17,7 @@ import { Product } from "@/store/data/data";
 import { useActions } from "@/store/actions";
 import { useTranslation } from "react-i18next";
 import Favorite from "@/common/components/productCard/components/Favorite";
+import { formatPrice } from "@/common/helpers/formatPrice";
 
 interface CardProps {
     cardInfo: Product;
@@ -54,10 +55,10 @@ const Card = ({ cardInfo, click, withHeart }: CardProps) => {
                 </ProductTitle>
 
                 <ProductPriceWrapper>
-                    {cardInfo.price} ₽ 
+                    {formatPrice(cardInfo.price)} ₽ 
                     <br/>
                     {cardInfo.oldPrice && <OldPrice>
-                        {cardInfo.oldPrice} ₽
+                        {formatPrice(cardInfo.oldPrice)} ₽
                     </OldPrice>}
                 </ProductPriceWrapper>
 

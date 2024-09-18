@@ -1,5 +1,5 @@
 import { clampText, hoverActive, resetButton, sizeWrapper } from "@/common/styles/mixins";
-import { fonts, screen } from "@/common/styles/styleConstants";
+import { fonts } from "@/common/styles/styleConstants";
 import styled from "styled-components";
 
 export const ProductListWrapper = styled('div')`
@@ -13,22 +13,9 @@ export const ProductListTitle = styled('p')`
 `;
 
 export const ListProduct = styled('ul')`
-    display: grid;
-    grid-template-columns: repeat(7, 80px);
-    gap: 10px;
-    justify-content: center;
-
-    @media (max-width: ${screen.tabletScreenWidth}){
-        grid-template-columns: repeat(6, 80px);
-    }
-
-    @media (max-width: ${screen.mobileScreenWidth}) {
-        grid-template-columns: repeat(4, 80px);
-    }
-
-    @media (max-width: ${screen.lMobileScreenWidth}) {
-        grid-template-columns: repeat(3, 80px);
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
 `;
 
 export const ProductItem = styled('li')`
