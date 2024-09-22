@@ -1,7 +1,7 @@
 import Card from "@/common/components/productCard/Card";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
-import { ProductsWrapper, TitleChapter } from "../style";
+import { ProductsWrapper, TitleChapter, ProductsType } from "@/modules/catalog/style";
 import { Product } from "@/store/data/data";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
@@ -16,8 +16,8 @@ const RenderCards = memo(({ openModal }: RenderCardsProps) => {
 
     return (
         <>
-            {productes.map(headfones => (
-                <>
+            {productes.map((headfones, index) => (
+                <ProductsType key={index}>
                     <TitleChapter>{t(headfones.title)}</TitleChapter>
 
                     <ProductsWrapper>
@@ -29,7 +29,7 @@ const RenderCards = memo(({ openModal }: RenderCardsProps) => {
                             />
                         ))}
                     </ProductsWrapper>
-                </>
+                </ProductsType>
             ))}
 
         </>

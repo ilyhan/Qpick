@@ -27,7 +27,7 @@ const ConnectMessenger = () => {
             </Navitem>
 
             <Navitem>
-                <MessengerLink to='https://t.me/neoflexcareers'>
+                <MessengerLink to='https://www.whatsapp.com/?ysclid=m1btdqbkq4290303481'>
                     <MessengerIcon src={whatsapp} alt={t('whatsApp')} />
                 </MessengerLink>
             </Navitem>

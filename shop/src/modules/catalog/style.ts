@@ -20,12 +20,6 @@ export const ProductsWrapper = styled('div')`
     gap: 30px;
     justify-content: space-around;
 
-    margin-bottom: 28px;
-
-    &:last-child{
-        margin-bottom: 0px;
-    }
-
     @media (max-width: ${screen.tabletScreenWidth}) {
         grid-template-columns: repeat(2, minmax(200px, 330px));
         gap: 23px;
@@ -35,4 +29,12 @@ export const ProductsWrapper = styled('div')`
         grid-template-columns: repeat(1, minmax(200px, 310px));
         gap: 18px;
     } 
+`;
+
+export const ProductsType = styled('div')`
+    margin-bottom: 28px;
+
+    &:last-child{
+        margin-bottom: 0px;
+    }
 `;

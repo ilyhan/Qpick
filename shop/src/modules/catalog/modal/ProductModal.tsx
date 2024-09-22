@@ -13,6 +13,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useActions } from "@/store/actions";
 import { useState } from "react";
+import { formatPrice } from "@/common/helpers/formatPrice";
 
 interface ProductModalProps {
     isOpen: boolean;
@@ -57,7 +58,7 @@ const ProductModal = ({ isOpen, setOpen, product }: ProductModalProps) => {
                     </ModalDescription>
 
                     <ModalPrice>
-                        {product.price} ₽
+                        {formatPrice(product.price)} ₽
                     </ModalPrice>
 
                     <ActionsWrapper>

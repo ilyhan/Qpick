@@ -18,6 +18,7 @@ export const NavItem = styled('li')`
 `;
 
 export const StyledLink = styled(Link)`
+    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
     ${hoverAnimation}
 `;
 
@@ -25,10 +26,6 @@ export const TermsUseWrapper = styled('div')`
     display: flex;
     flex-direction: column;
     gap: 35px;
-`;
-
-export const TermsUse = styled('p')`
-    ${clampText(fonts.sizes.mainMobile, fonts.sizes.main)}
 `;
 
 export const ExhangeLanguage = styled('div')`

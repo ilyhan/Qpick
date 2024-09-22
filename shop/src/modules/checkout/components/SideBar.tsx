@@ -42,7 +42,9 @@ const SideBar = memo(() => {
 
     const onOk = () => {
         setIsOpen(false);
-        navigate('/qpick/catalog');
+        setTimeout(()=>{
+            navigate('/qpick/catalog');
+        }, 0)
         clearCart();
         clearForm();
         clearFormUser();
